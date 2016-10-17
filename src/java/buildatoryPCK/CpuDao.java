@@ -18,9 +18,13 @@ import javax.persistence.Query;
 @Stateless
 public class CpuDao {
 
-    @PersistenceContext(unitName = "CpuPU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
 
+    public void persist(Cpu Cpu) {
+        em.persist(Cpu);
+    }
+    
     public List<Cpu> getAllCpu() {
         Query query = em.createNamedQuery("Cpu.findAll");
         return query.getResultList();
@@ -54,5 +58,6 @@ public class CpuDao {
             System.err.println(e.getMessage());
         }
     }
+
 }
 

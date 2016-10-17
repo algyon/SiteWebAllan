@@ -18,8 +18,12 @@ import javax.persistence.Query;
 @Stateless
 public class CarteGraphiqueDao {
 
-    @PersistenceContext(unitName = "CarteGraphiquePU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
+    
+    public void persist(CarteGraphique CG) {
+        em.persist(CG);
+    }
 
     public List<CarteGraphique> getAllCarteGraphique() {
         Query query = em.createNamedQuery("CarteGraphique.findAll");
@@ -54,4 +58,5 @@ public class CarteGraphiqueDao {
             System.err.println(e.getMessage());
         }
     }
+    
 }

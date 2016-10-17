@@ -18,8 +18,12 @@ import javax.persistence.Query;
 @Stateless
 public class CoolingDao {
 
-    @PersistenceContext(unitName = "CoolingPU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
+    
+    public void persist(Cooling Cooling) {
+        em.persist(Cooling);
+    }
 
     public List<Cooling> getAllCooling() {
         Query query = em.createNamedQuery("Cooling.findAll");
@@ -54,4 +58,5 @@ public class CoolingDao {
             System.err.println(e.getMessage());
         }
     }
+
 }

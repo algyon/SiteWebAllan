@@ -18,8 +18,12 @@ import javax.persistence.Query;
 @Stateless
 public class CarteMereDao {
 
-    @PersistenceContext(unitName = "CarteMerePU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
+
+    public void persist(CarteMere CM) {
+        em.persist(CM);
+    }
 
     public List<CarteMere> getAllCarteMere() {
         Query query = em.createNamedQuery("CarteMere.findAll");
@@ -54,4 +58,5 @@ public class CarteMereDao {
             System.err.println(e.getMessage());
         }
     }
+
 }

@@ -18,8 +18,12 @@ import javax.persistence.Query;
 @Stateless
 public class RamDao {
 
-    @PersistenceContext(unitName = "RamPU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
+    
+    public void persist(Ram Ram) {
+        em.persist(Ram);
+    }
 
     public List<Ram> getAllRam() {
         Query query = em.createNamedQuery("Ram.findAll");

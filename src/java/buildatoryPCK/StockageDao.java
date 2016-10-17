@@ -18,8 +18,12 @@ import javax.persistence.Query;
 @Stateless
 public class StockageDao {
 
-    @PersistenceContext(unitName = "StockagePU")
+    @PersistenceContext(unitName = "SiteWebAllanPU")
     private EntityManager em;
+
+    public void persist(Stockage Storage) {
+        em.persist(Storage);
+    }
 
     public List<Stockage> getAllStockage() {
         Query query = em.createNamedQuery("Stockage.findAll");
