@@ -67,8 +67,10 @@
 
 
         <p:galleria value="#{ImageViewer.images}" var="image" showCaption="false" style="width: 800px">
-            <p:graphicImage name="resources/images/#{image}" alt="fdsklf" title="Test"/>
+            <p:graphicImage value="resources/images/#{image}" alt="Image Description for #{image}" title="#{image}"/>
         </p:galleria>
+        
+        <h:graphicImage value="resources/images/Manga1.jpg" />
         
    
     </h:body>
