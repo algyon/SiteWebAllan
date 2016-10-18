@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author David
@@ -23,7 +17,7 @@
 
         @PostConstruct
         public void init() {
-            images = new ArrayList<String>();
+            images = new ArrayList <String>();
             images.add("108142.jpg");
             images.add("144565.jpg");
             images.add("57497.jpg");

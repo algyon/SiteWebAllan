@@ -27,7 +27,7 @@
 
                 <p:column>
                     <strong>Image</strong>
-                    <p:graphicImage name="src/IMG/108142.jpg" width="200"/>
+                    <p:graphicImage name="resources/images/108142.jpg" width="200"/>
                 </p:column>
             </p:submenu>
 
@@ -66,12 +66,10 @@
         </p:megaMenu>
 
 
-        <p:galleria value="#{ImageViewer.images}" var="image" showCaption="true">
-            <p:graphicImage name="src/IMG/#{image}" alt="fdsklf" title="Test"/>
+        <p:galleria value="#{ImageViewer.images}" var="image" showCaption="false" style="width: 800px">
+            <p:graphicImage name="resources/images/#{image}" alt="fdsklf" title="Test"/>
         </p:galleria>
         
-        
-        
-        
+   
     </h:body>
 </html>
