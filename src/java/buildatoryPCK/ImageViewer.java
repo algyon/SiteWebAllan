@@ -19,16 +19,11 @@
         @PostConstruct
         public void init() {
             images = new ArrayList <String>();
-                for(int i=1;i<=4;i++) {  
-                images.add("Manga"+i+".jpg");
+                for(int i=1;i<=3;i++) {  
+                images.add("Config"+i+".jpg");
             }
         }
-
-            //images.add("108142.jpg");
-            //images.add("144565.jpg");
-            //images.add("57497.jpg");
-            //images.add("5cl3l0W.jpg");
-        
+     
         public List<String> getImages() {
             return images;
         }
