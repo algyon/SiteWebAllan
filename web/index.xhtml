@@ -3,27 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <h:head>
         <link rel="stylesheet" href="resources/css/style.css"/>
         <title>Buildatory</title>
-        <!--<h1> Join the dark side </h1>
-        <p:graphicImage value="resources/images/Logo.png" alt="Logo" title="Logo"/>-->
     </h:head>
     <h:body>
-        <p:layout fullPage="true" id="Principal_Layout" > 
-            <p:layoutUnit position="north" id="head"> 
-                 <p:graphicImage value="resources/images/Logo.png" alt="Logo" title="Logo"/>
-             </p:layoutUnit>
-               
-            <p:layoutUnit position="center" id="gallerie">
-                <p:galleria value="#{ImageViewer.images}" var="image" showCaption="true">
-                    <p:graphicImage value="resources/images/#{image}" alt="Image Description for #{image}" title="#{image}"/>
-                </p:galleria>
+        <p:layout fullPage="true" id="Principal_Layout" >
+            <p:layoutUnit position="north" id="headlayout"  style="margin-bottom:20px ; margin-top:20px"> 
+                <div id="header" style="display : inline-flex">
+                      <div id="logo">
+                        <p:graphicImage value="resources/images/Logo.png" alt="Logo" title="Logo"/>
+                    </div> 
+                    <div id="slogan">
+                        <h1 id="textslogan"> Join the dark side </h1>
+                    </div>
+
+                </div>
             </p:layoutUnit>
+
+            <p:layoutUnit position="center" id="centerlayout" > 
+            </p:layoutUnit>  
         </p:layout>
-        <!--<h:graphicImage value="http://image.noelshack.com/fichiers/2016/24/1466289424-un-hibou-cage-a-oiseaux.jpg" />
-       
-      <img src="http://image.noelshack.com/fichiers/2016/24/1466289424-un-hibou-cage-a-oiseaux.jpg" alt="Hibou" style="width:128px;height:128px;"> -->
     </h:body>
 </html>

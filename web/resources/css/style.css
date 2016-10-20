@@ -7,8 +7,36 @@ and open the template in the editor.
     Created on : 19 oct. 2016, 17:25:38
     Author     : Alexandra
 */
+.headlayout{
+margin: 0px;
+position: absolute;
+top: 0px;
+bottom: auto;
+left: 0px;
+right: 0px;
+width: 100%;
+z-index: 0;
+height: 180.00px;
+display: block;
+visibility: visible;}
 
-.ui-galleria {
-    width: 100%!important;
-    height: 100%!important;
+.ui-widget-content {
+}
+
+.header{
+layoutdisplay: inherit;
+width: inherit;
+}
+
+.logo{
+display: inherit;
+}
+
+.slogan{
+    display: inherit;
+    width: inherit;
+}
+
+.textslogan{
+    margin: auto;
 }
