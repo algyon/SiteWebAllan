@@ -5,25 +5,61 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <link rel="stylesheet" href="resources/css/style.css"/>
         <title>Buildatory</title>
+        <!-- <link rel="stylesheet" type="text/css" href="ressources/css/style.css"/>-->
+        <h:outputStylesheet library="exemple" name="css/style.css" />
     </h:head>
     <h:body>
-        <p:layout fullPage="true" id="Principal_Layout" >
-            <p:layoutUnit position="north" id="headlayout"  style="margin-bottom:20px ; margin-top:20px"> 
-                <div id="header" style="display : inline-flex">
-                      <div id="logo">
-                        <p:graphicImage value="resources/images/Logo.png" alt="Logo" title="Logo"/>
-                    </div> 
-                    <div id="slogan">
-                        <h1 id="textslogan"> Join the dark side </h1>
-                    </div>
 
-                </div>
-            </p:layoutUnit>
+        <div id="header" style="display : inline-flex">
+            <div id="logo">
+                <p:graphicImage value="resources/images/Logotrans.png" alt="Logo" title="Logo" />
+            </div> 
+            <div id="slogan">
+                <h1 id="textslogan"> Join the dark side </h1>
+            </div>
 
-            <p:layoutUnit position="center" id="centerlayout" > 
-            </p:layoutUnit>  
-        </p:layout>
+        </div>
+
+
+        <div id="center">
+            <p:panel id="basic" header="Basic" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="resources/images/Logo.png" />
+                    <h:outputText value="Id"/>
+
+                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="resources/images/Logo.png" />
+                    <h:outputText value="Id"/>
+
+                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="resources/images/Logo.png" />
+                    <h:outputText value="Id"/>
+
+                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="resources/images/Logo.png" />
+                    <h:outputText value="Id"/>
+
+                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="resources/images/Logo.png" />
+                    <h:outputText value="Id"/>
+
+                    <h:outputText value="The story begins as Don Vito Corleone..." />
+                </h:panelGrid>
+            </p:panel>
+        </div>
+
+        <div id="footer" style="display : inline-flex">
+            Bonjour je le footer !
+        </div>
+
     </h:body>
 </html>
