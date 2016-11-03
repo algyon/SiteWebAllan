@@ -10,7 +10,10 @@
     <body>
         <h:form>
             <p:accordionPanel value="#{tabbedView.cpu}" var="cpu">
-                <p:tab title="Processeur - #{cpu.nomCpu}">
+                <p:tab title="Processeur">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                    </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputText value="Serie:" style="font-weight: bold" />
                         <h:outputText value="#{cpu.serie}" />
@@ -18,17 +21,25 @@
                         <h:outputText value="#{cpu.nbCoeur}" />
                         <h:outputText value="Fréquence:" style="font-weight: bold" />
                         <h:outputText value="#{cpu.frequence}" />
+                        <h:outputText value="Description:" style="font-weight: bold" />
+                        <h:outputText value="#{cpu.description}" />
                         <h:outputText value="Prix:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.prix}" />
+                        <h:outputText value="#{cpu.prix}€" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="" >
+                        <p:graphicImage></p:graphicImage>
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>
             <p:accordionPanel value="#{tabbedView.CM}" var="CM">
-                <p:tab title="Carte Mère  - #{CM.nomCm}">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Serie:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.serie}" />
-                        <h:outputText value="Nombre de Coeur:" style="font-weight: bold" />
+                <p:tab title="Carte Mère">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText value="##{CM.nomCm}" style="font-weight: bold; font-size: larger"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="5" title="Carte Mère">
+                        <h:outputText value="Chipset:" style="font-weight: bold" />
+                        <h:outputText value="#{CM.chipset}" />
+                        <h:outputText value="Socket" style="font-weight: bold" />
                         <h:outputText value="#{cpu.nbCoeur}" />
                         <h:outputText value="Fréquence:" style="font-weight: bold" />
                         <h:outputText value="#{cpu.frequence}" />
