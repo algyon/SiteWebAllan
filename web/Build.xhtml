@@ -10,10 +10,11 @@
     </h:head>
     <body>
         <h:form>
-            <p:accordionPanel >
+            <p:accordionPanel>
                 <p:tab title="Processeur">
                     <h:selectOneMenu value="#{tabbedView.cpu}">
-                        <f:selectItemvalue="#{}" var="cpu"/>
+                        <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} -- #{cpu.prix}€"/>
+                        <p:effect type="explode" event="click" />
                     </h:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10">
                         <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -34,11 +35,9 @@
                         <p:graphicImage></p:graphicImage>
                     </h:panelGrid>
                 </p:tab>
-            </p:accordionPanel>
-            <p:accordionPanel value="#{tabbedView.CM}" var="CM">
                 <p:tab title="Carte Mère">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <h:outputText value="##{CM.nomCm}" style="font-weight: bold; font-size: larger"/>
+                        <h:outputText value="#{CM.nomCm}" style="font-weight: bold; font-size: larger"/>
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" title="Carte Mère">
                         <h:outputText value="Chipset:" style="font-weight: bold" />
