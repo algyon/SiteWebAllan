@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -25,6 +26,7 @@ public class CpuControl implements Serializable{
     @EJB
     private CpuDao CpuDao;
     private Cpu CpuSaisie;
+    private Cpu SelectedCpu;
     
     
     public CpuControl() {
@@ -58,7 +60,27 @@ public class CpuControl implements Serializable{
         return "liste";
     }
 
-    public void lireCpu(ComponentSystemEvent event) {
+    /**public void lireCpu(ComponentSystemEvent event) {
         CpuSaisie = CpuDao.getCpu();
+    }**/
+    
+    public Cpu getSelectedCpu (){
+        if(SelectedCpu == null) {
+            SelectedCpu = CpuDao.getCpuByNom("Intel Core i5-6600K (3.5 GHz)");
+        }
+        
+        return SelectedCpu;
     }
+    
+    public void CpuValueChanged(ValueChangeEvent e){
+		String nomCpu = e.getNewValue().toString();
+                System.out.println(nomCpu);
+                try{
+                    SelectedCpu = CpuDao.getCpuByNom(nomCpu);
+                    System.out.println(SelectedCpu.toString());
+                }
+                catch (NullPointerException f){
+                    System.err.println(f);
+                }
+	}
 }
