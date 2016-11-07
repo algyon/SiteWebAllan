@@ -6,9 +6,7 @@
 package buildatoryPCK;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,14 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author David
+ * @author Alexandra
  */
 @Entity
 @Table(name = "stockage")
@@ -83,8 +80,6 @@ public class Stockage implements Serializable {
     @JoinColumn(name = "fabriquant_id", referencedColumnName = "fabriquant_id")
     @ManyToOne(optional = false)
     private Fabriquant fabriquantId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nomStockage")
-    private Collection<Configuration> configurationCollection;
 
     public Stockage() {
     }
@@ -180,14 +175,6 @@ public class Stockage implements Serializable {
 
     public void setFabriquantId(Fabriquant fabriquantId) {
         this.fabriquantId = fabriquantId;
-    }
-
-    public Collection<Configuration> getConfigurationCollection() {
-        return configurationCollection;
-    }
-
-    public void setConfigurationCollection(Collection<Configuration> configurationCollection) {
-        this.configurationCollection = configurationCollection;
     }
 
     @Override

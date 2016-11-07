@@ -56,11 +56,12 @@
                     }
                 </style>
                 <h3>Choose your starting configuration </h3>
-               <!-- <p:accordionPanel multiple="true" value="#{configurationControl.allConfigurations}" var="item">
+         
+                   <p:accordionPanel multiple="true" value="#{configurationControl.allConfigurations}" var="item">
                     <p:tab title="#{item.nomConfig}">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="resources/images/Logo.png" />
-                            <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                            <p:graphicImage name="resources/images/Logo.png" /> <!-- recup adresse image-->
+                            <h:outputText value="#{item.description}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
                         </h:panelGrid>-->
             </p:tab>
             </p:layoutUnit>
