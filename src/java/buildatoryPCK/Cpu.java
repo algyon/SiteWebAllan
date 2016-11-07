@@ -212,10 +212,11 @@ public class Cpu implements Serializable {
         }
         return true;
     }
-
-    @Override
+    
+    
+      @Override
     public String toString() {
-        return "buildatoryPCK.Cpu[ nomCpu=" + nomCpu + " ]";
+        return nomCpu;
     }
     
 }

@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * @author David
@@ -30,8 +31,14 @@ public class CpuDao {
         return query.getResultList();
     }
 
-    public Cpu getCpu() {
+    /**public Cpu getCpu() {
         Query query = em.createNamedQuery("Cpu.findByNomCpu");
+        return(Cpu) query.getSingleResult();
+    }*/
+    
+    public Cpu getCpuByNom(String cpuNom) {
+        TypedQuery<Cpu> query = em.createNamedQuery("Cpu.findByNomCpu", Cpu.class);
+        query.setParameter("nomCpu", cpuNom);
         return(Cpu) query.getSingleResult();
     }
 

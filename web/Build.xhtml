@@ -13,23 +13,23 @@
             <p:accordionPanel>
                 <p:tab title="Processeur">
                     <h:selectOneMenu value="#{tabbedView.cpu}">
+                        <p:ajax listener="#{CpuControl.CpuValueChanged}"/>
                         <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} -- #{cpu.prix}€"/>
-                        <p:effect type="explode" event="click" />
                     </h:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10">
                         <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputText value="Serie:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.serie}" />
+                        <h:outputText value="#{CpuControl.selectedCpu.nomCpu}" />
                         <h:outputText value="Nombre de Coeur:" style="font-weight:bold" />
-                        <h:outputText value="#{cpu.nbCoeur}" />
+                        <h:outputText value="#{CpuControl.selectedCpu.nbCoeur}" />
                         <h:outputText value="Fréquence:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.frequence}" />
+                        <h:outputText value="#{CpuControl.selectedCpu.frequence}" />
                         <h:outputText value="Description:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.description}" />
+                        <h:outputText value="#{CpuControl.selectedCpu.description}" />
                         <h:outputText value="Prix:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.prix}€" />
+                        <h:outputText value="#{CpuControl.selectedCpu.prix}€" />
                     </h:panelGrid>
                     <h:panelGrid columns="" >
                         <p:graphicImage></p:graphicImage>
