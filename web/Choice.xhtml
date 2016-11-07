@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Choice</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="exemple" name="css/mycss.css" />
+    </h:head>
+    <h:body  style=" background: black"> 
+        <p:layout id="Layout" fullPage="true">
+            <p:layoutUnit id="LayoutNorth" position="north" style=" position: absolute; resize:false; width:100%; height:100px">
+               
+                <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="resize: false; width:100%; height:100px" />
+        
+               </p:layoutUnit> 
+
+            <p:layoutUnit position="center">
+                <p:steps activeIndex="0" styleClass="custom" readonly="false" style="margin-top:15px">
+                    <p:menuitem value="Select" url="#"/>
+                    <p:menuitem value="Customize" url="#"/>
+                    <p:menuitem value="Payment" url="#"/>
+                    <p:menuitem value="Confirmation" url="#"/>
+                </p:steps>
+
+                <style type="text/css">
+                   
+                    .ui-steps .ui-steps-item {
+                        width: 24%;
+                    }
+
+                    .ui-state-highlight {
+                        text-shadow: none !important;
+                    }
+
+                    .ui-steps.custom {
+                        margin-bottom: 30px;
+                    }
+
+                    .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+                        height: 10px;
+                        padding: 0 1em;
+                    }
+
+                    .ui-steps.custom .ui-steps-item .ui-steps-number {
+                        background-color: #0081c2;
+                        color: #FFFFFF;
+                        display: inline-block;
+                        width: 30px;
+                        border-radius: 10px;
+                        margin-top: -10px;
+                        margin-bottom: 10px;
+                    }
+                </style>
+                <h3>Choose your starting </h3>
+               <!-- <p:accordionPanel multiple="true" value="#{configurationControl.allConfigurations}" var="item">
+                    <p:tab title="#{item.nomConfig}">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="resources/images/Logo.png" />
+                            <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                        </h:panelGrid>-->
+            </p:tab>
+            </p:layoutUnit>
+        </p:layout> 
+    </h:body>
+</html>
