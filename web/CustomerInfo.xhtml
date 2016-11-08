@@ -19,7 +19,7 @@
             </p:layoutUnit> 
 
             <p:layoutUnit position="center">
-                <p:steps activeIndex="0" styleClass="custom" readonly="false" style="margin-top:15px; margin-bottom:100px">
+                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:15px; margin-bottom:100px">
                     <p:menuitem value="Select" url="#"/>
                     <p:menuitem value="Customize" url="#"/>
                     <p:menuitem value="Payment" url="#"/>
@@ -55,16 +55,23 @@
                         margin-bottom: 10px;
                     }
                 </style>
-                <h3>Choose your starting configuration </h3>
-
-                <p:accordionPanel multiple="true" value="#{configurationControl.allConfigurations}" var="item">
-                    <p:tab title="#{item.nomConfig}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="resources/images/Logo.png" /> <!-- recup adresse image-->
-                            <h:outputText value="#{item.description}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
-                        </h:panelGrid>
-                    </p:tab>
-                </p:accordionPanel>
+                <h3>Coordonnées</h3>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Prénom*" for="prenom" /> 
+                        <h:inputText id="prenom" value="#{configurationControl.saisie.nomAlim}" title="Prenom" required="true" requiredMessage="Le prénom est requis" size="30"/>
+                        <h:outputLabel value="Nom*" for="nom" />
+                        <h:inputText id="nom" value="#{configurationControl.saisie.nomBoitier}" title="Nom" required="true" requiredMessage="Le nom est requis" size="30"/>
+                        <h:outputLabel value="Numéro de télephone*" for="tel" />
+                        <h:inputText id="tel" value="#{configurationControl.saisie.nomCpu}" title="Tel" required="true" requiredMessage="Le numéro de téléphone est requis"/>
+                        <h:outputLabel value="Email*" for="email" />
+                        <h:inputText id="email" value="#{configurationControl.saisie.nomCg}" title="Email" required="true" requiredMessage="L'email est requis" size="55"/>
+                        <h:outputLabel value="Adresse*" for="adresse" />
+                        <h:inputText id="adresse" value="#{configurationControl.saisie.nomRam}" title="Adresse" required="true" requiredMessage="L'adresse est requise" size="55" onmouseover=""/>
+                        
+                        <p:button outcome="index" value="Valider"></p:button>
+                    </h:panelGrid>
+                </h:form>
             </p:layoutUnit>
         </p:layout> 
     </h:body>
