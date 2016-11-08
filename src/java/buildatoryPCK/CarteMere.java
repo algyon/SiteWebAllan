@@ -241,7 +241,7 @@ public class CarteMere implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.CarteMere[ nomCm=" + nomCm + " ]";
+        return nomCm;
     }
     
 }

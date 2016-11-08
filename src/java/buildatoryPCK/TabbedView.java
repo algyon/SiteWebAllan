@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
  
 import org.primefaces.event.TabChangeEvent;
@@ -113,4 +114,5 @@ public class TabbedView {
     public List <Boitier> getBoitier(){
         return BoitierList;
     }
+    
 }
