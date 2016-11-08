@@ -199,7 +199,7 @@ public class Stockage implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.Stockage[ nomStockage=" + nomStockage + " ]";
+        return nomStockage;
     }
     
 }

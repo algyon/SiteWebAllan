@@ -40,7 +40,7 @@ public class CarteGraphiqueDao {
     
     public CarteGraphique getCgByNom(String cgNom) {
         TypedQuery<CarteGraphique> query = em.createNamedQuery("CarteGraphique.findByNomCg", CarteGraphique.class);
-        query.setParameter("nomCm", cgNom);
+        query.setParameter("nomCg", cgNom);
         return(CarteGraphique) query.getSingleResult();
     }
     

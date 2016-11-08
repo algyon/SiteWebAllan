@@ -7,6 +7,7 @@ package buildatoryPCK;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
@@ -25,12 +26,19 @@ public class StockageControl implements Serializable{
     @EJB
     private StockageDao StockageDao;
     private Stockage StorageSaisie;
+    private Stockage SelectedStockage;
+    private String SelectedStockageNom;
     
     
     public StockageControl() {
         StorageSaisie = new Stockage();
     }
 
+    @PostConstruct
+    public void init() {
+        SelectedStockage = StockageDao.getStockageByNom("Samsung Série 750 EVO, 250 Go, SATA III");
+    }
+    
     public List<Stockage> getAllStockages() {
         return StockageDao.getAllStockage();
     }
@@ -58,7 +66,31 @@ public class StockageControl implements Serializable{
         return "liste";
     }
 
+    public Stockage getSelectedStockage() {
+        return SelectedStockage;
+    }
+
+    public String getSelectedStockageNom() {
+        return SelectedStockageNom;
+    }
+
+    public void setSelectedStockageNom(String SelectedStockageNom) {
+        this.SelectedStockageNom = SelectedStockageNom;
+    }
+    
+    
+    /**
     public void lireStockage(ComponentSystemEvent event) {
         StorageSaisie = StockageDao.getStockage();
+    }*/
+    
+    
+    
+    public void StockageValueChanged() {
+        try {
+            SelectedStockage = StockageDao.getStockageByNom(SelectedStockageNom);
+        } catch (NullPointerException f) {
+            System.err.println(f.getMessage());
+        }
     }
 }

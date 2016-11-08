@@ -84,12 +84,26 @@ public class CarteGraphiqueControl implements Serializable{
         this.SelectedCgNom = SelectedCgNom;
     }
     
-    public void CMValueChanged() {
+    public void CgValueChanged() {
         try {
             SelectedCG = CarteGraphiqueDao.getCgByNom(SelectedCgNom);
         } catch (NullPointerException f) {
             System.err.println(f.getMessage());
         }
+    }
+    
+    public String sliAvailable(){
+        String SliYesNo = "";
+        try {
+            if (SelectedCG.getSli()==1){
+                SliYesNo = "Oui";
+            } else {
+                SliYesNo = "Non";
+            }
+        } catch(NullPointerException f) {
+            System.err.println(f.getMessage());
+        }
+        return SliYesNo;
     }
     
 }
