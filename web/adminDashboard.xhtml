@@ -7,6 +7,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="NomCpu:" for="nomCpu" />
+                    <p:inputText id="nomCpu" value="#{CpuControl.saisie.nomCpu}" title="NomCpu" required="true" requiredMessage="The NomCpu field is required."/>
+                    <p:outputLabel value="Serie:" for="serie" />
+                    <p:inputText id="serie" value="#{CpuControl.saisie.serie}" title="Serie" required="true" requiredMessage="The Serie field is required."/>
+                    <p:outputLabel value="Frequence:" for="frequence" />
+                    <p:inputText id="frequence" value="#{CpuControl.saisie.frequence}" title="Frequence" required="true" requiredMessage="The Frequence field is required."/>
+                    <p:outputLabel value="NbCoeur:" for="nbCoeur" />
+                    <p:inputText id="nbCoeur" value="#{CpuControl.saisie.nbCoeur}" title="NbCoeur" required="true" requiredMessage="The NbCoeur field is required."/>
+                    <p:outputLabel value="MemoireCache:" for="memoireCache" />
+                    <p:inputText id="memoireCache" value="#{CpuControl.saisie.memoireCache}" title="MemoireCache" required="true" requiredMessage="The MemoireCache field is required."/>
+                    <p:outputLabel value="Socket:" for="socket" />
+                    <p:inputText id="socket" value="#{CpuControl.saisie.socket}" title="Socket" required="true" requiredMessage="The Socket field is required."/>
+                    <p:outputLabel value="Img:" for="img" />
+                    <p:inputText id="img" value="#{CpuControl.saisie.img}" title="Img" />
+                    <p:outputLabel value="Description:" for="description" />
+                    <p:inputText id="description" value="#{CpuControl.saisie.description}" title="Description" />
+                    <p:outputLabel value="Prix:" for="prix" />
+                    <p:inputText id="prix" value="#{CpuControl.saisie.prix}" title="Prix" required="true" requiredMessage="The Prix field is required."/>
+                    <p:outputLabel value="FabriquantId:" for="fabriquantId" />
+                    <p:selectOneMenu id="fabriquantId" value="#{CpuControl.saisie.fabriquantId}" required="true" requiredMessage="The FabriquantId field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fabriquantControl.allFabriquants}" itemLabel="#{fabriquantControl.allFabriquants}"/>
+                    </p:selectOneMenu>
+                    <input type="submit" value="SubmitCpu" />
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
     </body>
 </html>

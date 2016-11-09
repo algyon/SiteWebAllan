@@ -63,10 +63,10 @@
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Carte Graphique">
-                    <h:selectOneMenu value="#{CarteGraphiqueControl.selectedCgNom}">
+                    <p:selectOneMenu value="#{CarteGraphiqueControl.selectedCgNom}">
                         <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{CarteGraphiqueControl.CgValueChanged()}"/>
                         <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} -- #{cg.prix}€"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cg">
                         <h:outputText value="#{CarteGraphiqueControl.selectedCG.nomCg}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
                     </h:panelGrid>
@@ -87,32 +87,6 @@
                         <h:outputText value="#{CarteGraphiqueControl.selectedCG.prix}€" />
                     </h:panelGrid>
                 </p:tab>
-                <p:tab title="Ram">
-                    <h:selectOneMenu value="#{CarteGraphiqueControl.selectedCgNom}">
-                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{CarteGraphiqueControl.CgValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} -- #{cg.prix}€"/>
-                    </h:selectOneMenu>
-                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cg">
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.nomCg}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_cg">
-                        <h:outputText value="GPU :" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.gpu}" />
-                        <h:outputText value="Gpu Clock :" style="font-weight:bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.gpuClock}" />
-                        <h:outputText value="Capacité Mémoire :" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.capaciteMemoire}" />
-                        <h:outputText value="Type de Mémoire :" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.typeMemoire}" />
-                        <h:outputText value="SLI :" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.sliAvailable()}" />
-                        <h:outputText value="Description:" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.description}" />
-                        <h:outputText value="Prix:" style="font-weight: bold" />
-                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.prix}€" />
-                    </h:panelGrid>
-                </p:tab>
-                
             </p:accordionPanel>
         </h:form>
     </body>

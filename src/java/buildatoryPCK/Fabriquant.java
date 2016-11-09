@@ -175,7 +175,7 @@ public class Fabriquant implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.Fabriquant[ fabriquantId=" + fabriquantId + " ]";
+        return nomFabriquant;
     }
     
 }

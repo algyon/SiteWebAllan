@@ -23,11 +23,15 @@ public class FabriquantControl implements Serializable{
     @EJB
     private FabriquantDao FabriquantDao;
     private Fabriquant FabriquantSaisie;
+    private Fabriquant FabriquantSelected;
+    
     /**
      * Creates a new instance of FabriquantControl
      */
+    
     public FabriquantControl() {
         FabriquantSaisie = new Fabriquant();
+        FabriquantSelected = new Fabriquant();
     }
 
     public List<Fabriquant> getAllFabriquants() {

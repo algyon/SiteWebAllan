@@ -32,6 +32,7 @@ public class CarteMereControl implements Serializable{
     
     public CarteMereControl() {
         CMSaisie = new CarteMere();
+        SelectedCM = new CarteMere();
     }
 
     @PostConstruct

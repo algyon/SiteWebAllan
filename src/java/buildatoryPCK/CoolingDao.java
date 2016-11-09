@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * @author David
@@ -32,6 +33,12 @@ public class CoolingDao {
 
     public Cooling getCooling() {
         Query query = em.createNamedQuery("Cooling.findByNomCooling");
+        return(Cooling) query.getSingleResult();
+    }
+    
+    public Cooling getCoolingByNom(String coolingNom) {
+        TypedQuery<Cooling> query = em.createNamedQuery("Cooling.findByNomStockage", Cooling.class);
+        query.setParameter("nomCooling", coolingNom);
         return(Cooling) query.getSingleResult();
     }
 
