@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>CustomerInfo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="exemple" name="css/mycss.css" />
+    </h:head>
+    <h:body  style=" background: black"> 
+        <p:layout id="Layout" style="resize: true; width:100%; min-height: 700px" >
+            <p:layoutUnit id="LayoutNorth" position="north" style=" position: absolute; resize:false; width:100%; height:100px">
+
+                <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="resize: false; width:100%; height:100px" />
+
+            </p:layoutUnit> 
+           
+            <p:layoutUnit position="center" style="resize: true; size: 100">
+                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:15px; margin-bottom:100px">
+                    <p:menuitem value="Sélection" url="#"/>
+                    <p:menuitem value="Customisation" url="#"/>
+                    <p:menuitem value="Facturation " url="#"/>
+                    <p:menuitem value="Payement" url="#"/>
+                </p:steps>
+
+                <style type="text/css">
+
+                    .ui-steps .ui-steps-item {
+                        width: 24%;
+                    }
+
+                    .ui-state-highlight {
+                        text-shadow: none !important;
+                    }
+
+                    .ui-steps.custom {
+                        margin-bottom: 30px;
+                    }
+
+                    .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+                        height: 10px;
+                        padding: 0 1em;
+                    }
+
+                    .ui-steps.custom .ui-steps-item .ui-steps-number {
+                        background-color: #0081c2;
+                        color: #FFFFFF;
+                        display: inline-block;
+                        width: 30px;
+                        border-radius: 10px;
+                        margin-top: -10px;
+                        margin-bottom: 10px;
+                    }
+                </style>
+
+                <div style="margin-top:20px">
+                    <h3>Coordonnées</h3>
+                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+                    <h:form id="form1">
+                        <h:panelGrid id="val" columns="3">
+                            <h:outputLabel value="Prénom*" for="prenom" /> 
+                            <h:inputText id="prenom" value="#{configurationControl.saisie.nomAlim}" title="Prenom" required="true" requiredMessage="Le prénom est requis" size="30"/>
+                            <p:message for="prenom" />
+
+                            <h:outputLabel value="Nom*" for="nom" />
+                            <h:inputText id="nom" title="Nom" required="true" requiredMessage="Le nom est requis" size="30"/>
+                            <p:message for="nom" />
+
+                            <h:outputLabel value="Numéro de télephone*" for="tel" />
+                            <h:inputText id="tel" title="Tel" required="true" requiredMessage="Le numéro de téléphone est requis"/>
+                            <p:message for="tel" />
+
+                            <h:outputLabel value="Email*" for="email" />
+                            <h:inputText id="email" title="Email" required="true" requiredMessage="L'email est requis" size="55"/>
+                            <p:message for="email" />
+
+                            <h:outputLabel value="Adresse*" for="adresse" />
+                            <h:inputText id="adresse" title="N° de Voie, Type de Voie, Complément d'adresse, Code Postal et Ville" required="true" requiredMessage="L'adresse est requise" size="55" /> 
+                            <p:message for="adresse" />                    
+
+                        </h:panelGrid>     
+                        <p:tooltip id="toolTipFocus" for="adresse" showEvent="focus" hideEvent="blur" />
+                    </h:form>
+                </div>
+
+                <div>
+                    <h3>Livraison</h3>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <!--<p:outputLabel for="livraison" value="Livraison" />-->
+                        <p:selectOneRadio id="livraison" value="livraison" layout="grid" columns="1">
+                            <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="Je choisis la livraison à domicile"/> 
+                            <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="Je viens recuperer ma commande à l'usine" />
+                        </p:selectOneRadio>
+                    </h:panelGrid>
+                </div>
+               
+                    <p:commandButton id="boutonValider" value="Valider" update=":form1:val" style="margin-top:20px; margin-left:50px"/>
+                
+                     <p:graphicImage style="overflow: hidden" value="resources/images/Config1.jpg" />
+            </p:layoutUnit>
+        </p:layout> 
+    </h:body>
+</html>
