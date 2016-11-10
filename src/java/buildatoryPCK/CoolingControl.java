@@ -25,6 +25,8 @@ public class CoolingControl implements Serializable{
     @EJB
     private CoolingDao CoolingDao;
     private Cooling CoolingSaisie;
+    private Cooling SelectedCooling;
+    private String SelectedCoolingNom;
     
     
     public CoolingControl() {
@@ -57,8 +59,31 @@ public class CoolingControl implements Serializable{
         CoolingDao.update(CoolingSaisie);
         return "liste";
     }
-
+    
+    
+    
+    /*
     public void lireCooling(ComponentSystemEvent event) {
         CoolingSaisie = CoolingDao.getCooling();
+    }*/
+
+    public Cooling getSelectedCooling() {
+        return SelectedCooling;
+    }
+
+    public String getSelectedCoolingNom() {
+        return SelectedCoolingNom;
+    }
+
+    public void setSelectedCoolingNom(String SelectedCoolingNom) {
+        this.SelectedCoolingNom = SelectedCoolingNom;
+    }
+    
+    public void CoolingValueChanged() {
+        try {
+            SelectedCooling = CoolingDao.getCoolingByNom(SelectedCoolingNom);
+        } catch (NullPointerException f) {
+            System.err.println(f.getMessage());
+        }
     }
 }

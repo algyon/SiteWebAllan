@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * @author David
@@ -30,11 +31,17 @@ public class CarteMereDao {
         return query.getResultList();
     }
 
-    public CarteMere getCarteMere() {
+    /*public CarteMere getCarteMere() {
         Query query = em.createNamedQuery("CarteMere.findByNomCM");
         return(CarteMere) query.getSingleResult();
+    }*/
+    
+    public CarteMere getCMByNom(String cmNom) {
+        TypedQuery<CarteMere> query = em.createNamedQuery("CarteMere.findByNomCm", CarteMere.class);
+        query.setParameter("nomCm", cmNom);
+        return(CarteMere) query.getSingleResult();
     }
-
+    
     public void update(CarteMere CM) {
         try {
             em.merge(CM);

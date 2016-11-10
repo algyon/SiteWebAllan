@@ -10,16 +10,16 @@
     </h:head>
     <body>
         <h:form>
-            <p:accordionPanel>
+            <p:accordionPanel multiple="true">
                 <p:tab title="Processeur">
-                    <h:selectOneMenu value="#{tabbedView.cpu}">
-                        <p:ajax listener="#{CpuControl.CpuValueChanged}"/>
+                    <h:selectOneMenu value="#{CpuControl.selectedCpuNom}">
+                        <p:ajax event="change" update="panel_titre_cpu panel_contenu_cpu" listener="#{CpuControl.CpuValueChanged}"/>
                         <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} -- #{cpu.prix}€"/>
                     </h:selectOneMenu>
-                    <h:panelGrid columns="1" cellpadding="10">
-                        <h:outputText value="#{cpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cpu">
+                        <h:outputText value="#{CpuControl.selectedCpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
                     </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_cpu">
                         <h:outputText value="Serie:" style="font-weight: bold" />
                         <h:outputText value="#{CpuControl.selectedCpu.nomCpu}" />
                         <h:outputText value="Nombre de Coeur:" style="font-weight:bold" />
@@ -36,32 +36,55 @@
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Carte Mère">
-                    <h:panelGrid columns="1" cellpadding="10">
-                        <h:outputText value="#{CM.nomCm}" style="font-weight: bold; font-size: larger"/>
+                    <h:selectOneMenu value="#{CarteMereControl.selectedCMNom}">
+                        <p:ajax event="change" update="panel_titre_cm panel_contenu_cm" listener="#{CarteMereControl.CMValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.CM}" var="cm" itemLabel="#{cm.nomCm} -- #{cm.prix}€"/>
+                    </h:selectOneMenu>
+                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cm">
+                        <h:outputText value="#{CarteMereControl.selectedCM.nomCm}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
                     </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="5" title="Carte Mère">
-                        <h:outputText value="Chipset:" style="font-weight: bold" />
-                        <h:outputText value="#{CM.chipset}" />
-                        <h:outputText value="Socket" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.nbCoeur}" />
-                        <h:outputText value="Fréquence:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.frequence}" />
+                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_cm">
+                        <h:outputText value="Chipset :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.chipset}" />
+                        <h:outputText value="Socket :" style="font-weight:bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.socket}" />
+                        <h:outputText value="Nombre d'emplacement Ram :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.nbEmpRam}" />
+                        <h:outputText value="Nombre d'emplacement PCIe :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.nbPcie}" />
+                        <h:outputText value="Nombre d'emplacement Sata :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.nbSata}" />
+                        <h:outputText value="Nombre d'emplacement USB" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.nbUsb}" />
+                        <h:outputText value="Description:" style="font-weight: bold" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.description}" />
                         <h:outputText value="Prix:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.prix}" />
+                        <h:outputText value="#{CarteMereControl.selectedCM.prix}€" />
                     </h:panelGrid>
                 </p:tab>
-            </p:accordionPanel>
-            <p:accordionPanel value="#{tabbedView.CG}" var="CG">
-                <p:tab title="Carte Graphique  - #{CG.nomCg}">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Serie:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.serie}" />
-                        <h:outputText value="Nombre de Coeur:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.nbCoeur}" />
-                        <h:outputText value="Fréquence:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.frequence}" />
+                <p:tab title="Carte Graphique">
+                    <p:selectOneMenu value="#{CarteGraphiqueControl.selectedCgNom}">
+                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{CarteGraphiqueControl.CgValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} -- #{cg.prix}€"/>
+                    </p:selectOneMenu>
+                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cg">
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.nomCg}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_cg">
+                        <h:outputText value="GPU :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.gpu}" />
+                        <h:outputText value="Gpu Clock :" style="font-weight:bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.gpuClock}" />
+                        <h:outputText value="Capacité Mémoire :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.capaciteMemoire}" />
+                        <h:outputText value="Type de Mémoire :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.typeMemoire}" />
+                        <h:outputText value="SLI :" style="font-weight: bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.sliAvailable()}" />
+                        <h:outputText value="Description:" style="font-weight: bold" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.description}" />
                         <h:outputText value="Prix:" style="font-weight: bold" />
-                        <h:outputText value="#{cpu.prix}" />
+                        <h:outputText value="#{CarteGraphiqueControl.selectedCG.prix}€" />
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>

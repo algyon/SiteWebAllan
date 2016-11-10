@@ -214,7 +214,7 @@ public class CarteGraphique implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.CarteGraphique[ nomCg=" + nomCg + " ]";
+        return nomCg;
     }
     
 }

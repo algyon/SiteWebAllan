@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * @author David
@@ -29,12 +30,20 @@ public class CarteGraphiqueDao {
         Query query = em.createNamedQuery("CarteGraphique.findAll");
         return query.getResultList();
     }
-
+    
+    /*
     public CarteGraphique getCarteGraphique() {
         Query query = em.createNamedQuery("CarteGraphique.findByNomCG");
         return(CarteGraphique) query.getSingleResult();
     }
-
+    */
+    
+    public CarteGraphique getCgByNom(String cgNom) {
+        TypedQuery<CarteGraphique> query = em.createNamedQuery("CarteGraphique.findByNomCg", CarteGraphique.class);
+        query.setParameter("nomCg", cgNom);
+        return(CarteGraphique) query.getSingleResult();
+    }
+    
     public void update(CarteGraphique CG) {
         try {
             em.merge(CG);

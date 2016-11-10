@@ -7,6 +7,7 @@ package buildatoryPCK;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ValueChangeEvent;
@@ -16,21 +17,25 @@ import javax.faces.view.ViewScoped;
 /**
  *
  * @author David
- * 
+ *
  */
-
 @Named(value = "CpuControl")
 @ViewScoped
-public class CpuControl implements Serializable{
-    
+public class CpuControl implements Serializable {
+
     @EJB
     private CpuDao CpuDao;
     private Cpu CpuSaisie;
     private Cpu SelectedCpu;
-    
-    
+    private String SelectedCpuNom;
+
     public CpuControl() {
         CpuSaisie = new Cpu();
+    }
+
+    @PostConstruct
+    public void init() {
+        SelectedCpu = CpuDao.getCpuByNom("Intel Core i5-6600K (3.5 GHz)");
     }
 
     public List<Cpu> getAllCpus() {
@@ -60,27 +65,32 @@ public class CpuControl implements Serializable{
         return "liste";
     }
 
-    /**public void lireCpu(ComponentSystemEvent event) {
-        CpuSaisie = CpuDao.getCpu();
-    }**/
+    /**
+     * public void lireCpu(ComponentSystemEvent event) { CpuSaisie =
+     * CpuDao.getCpu();
+    }*
+     */
     
-    public Cpu getSelectedCpu (){
-        if(SelectedCpu == null) {
-            SelectedCpu = CpuDao.getCpuByNom("Intel Core i5-6600K (3.5 GHz)");
-        }
-        
-        return SelectedCpu;
+    public String getSelectedCpuNom() {
+        return SelectedCpuNom;
+    }
+
+    public void setSelectedCpuNom(String SelectedCpuNom) {
+        this.SelectedCpuNom = SelectedCpuNom;
     }
     
-    public void CpuValueChanged(ValueChangeEvent e){
-		String nomCpu = e.getNewValue().toString();
-                System.out.println(nomCpu);
-                try{
-                    SelectedCpu = CpuDao.getCpuByNom(nomCpu);
-                    System.out.println(SelectedCpu.toString());
-                }
-                catch (NullPointerException f){
-                    System.err.println(f);
-                }
-	}
+    public Cpu getSelectedCpu() {
+        return SelectedCpu;
+    }
+
+    public void CpuValueChanged() {
+        try {
+            SelectedCpu = CpuDao.getCpuByNom(SelectedCpuNom);
+            System.out.println(SelectedCpu.toString());
+            // F param
+            // .Stream.filter 
+        } catch (NullPointerException f) {
+            System.err.println(f);
+        }
+    }
 }

@@ -170,7 +170,7 @@ public class Cooling implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.Cooling[ nomCooling=" + nomCooling + " ]";
+        return nomCooling;
     }
     
 }
