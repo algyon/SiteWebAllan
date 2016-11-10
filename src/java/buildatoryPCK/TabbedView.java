@@ -6,6 +6,20 @@
 package buildatoryPCK;
 
 
+import Cpu.Cpu;
+import Cpu.CpuDao;
+import Cooling.Cooling;
+import Cooling.CoolingDao;
+import Ram.Ram;
+import Ram.RamDao;
+import Stockage.Stockage;
+import Stockage.StockageDao;
+import CarteMere.CarteMereDao;
+import CarteMere.CarteMere;
+import CarteGraphique.CarteGraphiqueDao;
+import CarteGraphique.CarteGraphique;
+import Boitier.BoitierDao;
+import Boitier.Boitier;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +30,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
- 
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 
 
 @ManagedBean
-public class TabbedView {
+public class TabbedView implements Serializable {
     
     // Cpu
     private List<Cpu> CpuList;
@@ -59,9 +72,6 @@ public class TabbedView {
     @EJB
     private BoitierDao BoitierDao;
     
-    
-    
- 
     @PostConstruct
     public void init() {
         CpuList = new ArrayList<>();

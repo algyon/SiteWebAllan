@@ -64,7 +64,7 @@
                 </p:tab>
                 <p:tab title="Carte Graphique">
                     <p:selectOneMenu value="#{CarteGraphiqueControl.selectedCgNom}">
-                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{CarteGraphiqueControl.CgValueChanged()}"/>
+                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{CarteGraphiqueControl.CgValueChanged}"/>
                         <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} -- #{cg.prix}€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cg">
@@ -85,6 +85,27 @@
                         <h:outputText value="#{CarteGraphiqueControl.selectedCG.description}" />
                         <h:outputText value="Prix:" style="font-weight: bold" />
                         <h:outputText value="#{CarteGraphiqueControl.selectedCG.prix}€" />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Ram">
+                    <p:selectOneMenu value="#{RamControl.selectedRamNom}">
+                        <p:ajax event="change" update="panel_titre_ram panel_contenu_ram" listener="#{RamControl.ramValueChanged}"/>
+                        <f:selectItems value="#{tabbedView.ram}" var="ram" itemLabel="#{ram.nomRam} -- #{ram.prix}€"/>
+                    </p:selectOneMenu>
+                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_ram">
+                        <h:outputText value="#{RamControl.selectedRam.nomRam}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_ram">
+                        <h:outputText value="Capacité :" style="font-weight: bold" />
+                        <h:outputText value="#{RamControl.selectedRam.capacite}" />
+                        <h:outputText value="Type Ram :" style="font-weight:bold" />
+                        <h:outputText value="#{RamControl.selectedRam.typeRam}" />
+                        <h:outputText value="Fréquence :" style="font-weight: bold" />
+                        <h:outputText value="#{RamControl.selectedRam.frequence}" />
+                        <h:outputText value="Description:" style="font-weight: bold" />
+                        <h:outputText value="#{RamControl.selectedRam.description}" />
+                        <h:outputText value="Prix:" style="font-weight: bold" />
+                        <h:outputText value="#{RamControl.selectedRam.prix}€" />
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>
