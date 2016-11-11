@@ -8,11 +8,16 @@ and open the template in the editor.
     Author     : Alexandra
 */
 
-   .ui-layout-unit .ui-layout-unit-content{
-                        position: relative;
-                        height: 101px;
-                        visibility: visible;
-                        overflow: hidden !important;
-                        
-                    }
-    
+/*.ui-layout-north{
+    position: relative;
+    height: 101px;
+    visibility: visible;
+    overflow: hidden !important;
+}*/
+
+.ui-layout-north{
+    overflow: hidden !important;
+}
+.ui-layout-north .ui-layout-unit-content{
+    overflow: hidden !important;
+}
