@@ -32,7 +32,7 @@ public class RamDao {
     }
 
     public Ram getRamByNom(String RamNom) {
-        TypedQuery<Ram> query = em.createNamedQuery("Cpu.findByNomRam", Ram.class);
+        TypedQuery<Ram> query = em.createNamedQuery("Ram.findByNomRam", Ram.class);
         query.setParameter("nomRam", RamNom);
         return(Ram) query.getSingleResult();
     }

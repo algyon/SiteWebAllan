@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,11 +30,18 @@ public class ConfigurationDao {
         Query query = em.createNamedQuery("Configuration.findAll");
         return query.getResultList();
     }
-
+    
+    public Configuration getConfigurationByNom(String nomconfig){
+        TypedQuery<Configuration> query = em.createNamedQuery("Configuration.findByNomConfig", Configuration.class);
+        query.setParameter("nomConfig", nomconfig);
+        return(Configuration) query.getSingleResult();
+    }
+    
+    /*
     public Configuration getConfiguration() {
         Query query = em.createNamedQuery("Configuraton.findByNomConfiguration");
         return(Configuration) query.getSingleResult();
-    }
+    }*/
 
     public void update(Configuration Config) {
         try {

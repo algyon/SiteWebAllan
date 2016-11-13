@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -84,27 +83,7 @@ public class CarteGraphiqueControl implements Serializable {
     public void setSelectedCgNom(String SelectedCgNom) {
         this.SelectedCgNom = SelectedCgNom;
     }
-
-    public void CgValueChanged() {
-        try {
-            SelectedCG = CarteGraphiqueDao.getCgByNom(SelectedCgNom);
-        } catch (NullPointerException f) {
-            System.err.println(f.getMessage());
-        }
-    }
-
-    public String sliAvailable() {
-        String SliYesNo = "";
-        try {
-            if (SelectedCG.getSli() == 1) {
-                SliYesNo = "Oui";
-            } else {
-                SliYesNo = "Non";
-            }
-        } catch (NullPointerException f) {
-            System.err.println(f.getMessage());
-        }
-        return SliYesNo;
-    }
+    
+    
 
 }

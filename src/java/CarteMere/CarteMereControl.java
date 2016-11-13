@@ -82,12 +82,4 @@ public class CarteMereControl implements Serializable{
         return SelectedCM;
     }
     
-    public void CMValueChanged() {
-        try {
-            SelectedCM = CarteMereDao.getCMByNom(SelectedCMNom);
-        } catch (NullPointerException f) {
-            System.err.println(f.getMessage());
-        }
-    }
-    
 }

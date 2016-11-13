@@ -9,27 +9,7 @@
     <h:head>
         <title>CustomerInfo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
-    </h:head>
-    <h:body  style=" background: black"> 
-        <p:layout id="Layout" fullPage="true">
-            <!-- <p:layoutUnit id="LayoutNorth" position="north" style=" width:100%; height:100px;">
- 
-                 <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px" />
- 
-             </p:layoutUnit> -->
-
-            <p:layoutUnit position="center">
-                <p:graphicImage id="Img1" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
-
-                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:40px; margin-bottom:70px; margin-left: 15px">
-                    <p:menuitem value="Sélection" url="#"/>
-                    <p:menuitem value="Customisation" url="#"/>
-                    <p:menuitem value="Facturation " url="#"/>
-                    <p:menuitem value="Payement" url="#"/>
-                </p:steps>
-
-                <style type="text/css">
+        <style type="text/css">
 
                     .ui-steps .ui-steps-item {
                         width: 24%;
@@ -58,6 +38,27 @@
                         margin-bottom: 10px;
                     }
                 </style>
+        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
+    </h:head>
+    <h:body  style=" background: black"> 
+        <p:layout id="Layout" fullPage="true">
+            <!-- <p:layoutUnit id="LayoutNorth" position="north" style=" width:100%; height:100px;">
+ 
+                 <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px" />
+ 
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center">
+                <p:graphicImage id="Img1" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
+
+                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:40px; margin-bottom:70px; margin-left: 15px">
+                    <p:menuitem value="Sélection" url="#"/>
+                    <p:menuitem value="Customisation" url="#"/>
+                    <p:menuitem value="Facturation " url="#"/>
+                    <p:menuitem value="Payement" url="#"/>
+                </p:steps>
+
+                
 
                 <div style="margin-top:75px; margin-left: 10px">
                     <h3>Coordonnées</h3>

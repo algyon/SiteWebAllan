@@ -32,7 +32,7 @@ public class BoitierDao {
     }
     
     public Boitier getBoitierByNom (String boitierNom){
-        TypedQuery <Boitier> query = em.createNamedQuery("Boitier.findByNomBoiter",Boitier.class);
+        TypedQuery <Boitier> query = em.createNamedQuery("Boitier.findByNomBoitier",Boitier.class);
         query.setParameter("nomBoitier", boitierNom);
         return(Boitier) query.getSingleResult();
     }

@@ -5,7 +5,8 @@
  */
 package buildatoryPCK;
 
-
+import Alimentation.Alimentation;
+import Alimentation.AlimentationDao;
 import Cpu.Cpu;
 import Cpu.CpuDao;
 import Cooling.Cooling;
@@ -20,109 +21,141 @@ import CarteGraphique.CarteGraphiqueDao;
 import CarteGraphique.CarteGraphique;
 import Boitier.BoitierDao;
 import Boitier.Boitier;
-import java.io.Serializable;
+import Configuration.Configuration;
+import Configuration.ConfigurationDao;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
-import javax.inject.Named;
-import org.primefaces.event.TabChangeEvent;
-import org.primefaces.event.TabCloseEvent;
-
 
 @ManagedBean
-public class TabbedView implements Serializable {
+public class TabbedView {
     
+    private String nomConfig;
+
     // Cpu
     private List<Cpu> CpuList;
     @EJB
     private CpuDao CpuDao;
-    
+
     //Carte Mere
     private List<CarteMere> CmList;
     @EJB
     private CarteMereDao CmDao;
-    
+
     //Carte Graphique
     private List<CarteGraphique> CgList;
     @EJB
     private CarteGraphiqueDao CgDao;
-    
+
     // Ram
     private List<Ram> RamList;
     @EJB
     private RamDao RamDao;
-    
+
     // Stockage
     private List<Stockage> StockageList;
     @EJB
     private StockageDao StockageDao;
-    
+
     // Cooling
     private List<Cooling> CoolingList;
     @EJB
     private CoolingDao CoolingDao;
-    
+
     // Boitier
     private List<Boitier> BoitierList;
     @EJB
     private BoitierDao BoitierDao;
-    
+
+    //Alim
+    private List<Alimentation> AlimList;
+    @EJB
+    private AlimentationDao AlimentationDao;
+
+    private List<Configuration> ConfigList;
+    @EJB
+    private ConfigurationDao configDao;
+
     @PostConstruct
     public void init() {
         CpuList = new ArrayList<>();
         CpuList = CpuDao.getAllCpu();
-        
-        CmList = new ArrayList <>();
+
+        CmList = new ArrayList<>();
         CmList = CmDao.getAllCarteMere();
-        
-        CgList = new ArrayList <>();
+
+        CgList = new ArrayList<>();
         CgList = CgDao.getAllCarteGraphique();
-        
-        RamList = new ArrayList <>();
+
+        RamList = new ArrayList<>();
         RamList = RamDao.getAllRam();
-        
-        StockageList = new ArrayList <>();
+
+        StockageList = new ArrayList<>();
         StockageList = StockageDao.getAllStockage();
-        
-        CoolingList = new ArrayList <>();
+
+        CoolingList = new ArrayList<>();
         CoolingList = CoolingDao.getAllCooling();
+
+        BoitierList = new ArrayList<>();
+        BoitierList = BoitierDao.getAllBoitier();
+
+        AlimList = new ArrayList<>();
+        AlimList = AlimentationDao.getAllAlimentation();
         
-        BoitierList = new ArrayList <>();
-        BoitierList = BoitierDao.getAllBoitier();      
-        
+        ConfigList = new ArrayList<>();
+        ConfigList = configDao.getAllConfiguration();
+
     }
-         
-    public List <Cpu> getCpu(){
+
+    public List<Cpu> getCpu() {
         return CpuList;
     }
-    
-    public List <CarteMere> getCM(){
+
+    public List<CarteMere> getCM() {
         return CmList;
     }
-    
-    public List <CarteGraphique> getCG(){
+
+    public List<CarteGraphique> getCG() {
         return CgList;
     }
-    
-    public List <Ram> getRam(){
+
+    public List<Ram> getRam() {
         return RamList;
     }
-    
-    public List <Stockage> getStockage(){
+
+    public List<Stockage> getStockage() {
         return StockageList;
     }
-    
-    public List <Cooling> getCooling(){
+
+    public List<Cooling> getCooling() {
         return CoolingList;
     }
-    
-    public List <Boitier> getBoitier(){
+
+    public List<Boitier> getBoitier() {
         return BoitierList;
     }
+
+    public List<Alimentation> getAlimentation() {
+        return AlimList;
+    }
+
+    public List<Configuration> getConfiguration() {
+        return ConfigList;
+    }
+
+    public String getParamValueNameConfig(FacesContext fc) {
+
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get("nomConfig");
+    }
     
+    public String getNameConfig (){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        this.nomConfig = getParamValueNameConfig(fc);
+        return this.nomConfig;
+    }
 }

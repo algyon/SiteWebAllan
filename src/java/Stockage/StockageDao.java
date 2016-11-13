@@ -36,6 +36,7 @@ public class StockageDao {
         query.setParameter("nomStockage", stockageNom);
         return(Stockage) query.getSingleResult();
     }
+    
     /*
     public Stockage getStockage() {
         Query query = em.createNamedQuery("Stockage.findByNomStorage");

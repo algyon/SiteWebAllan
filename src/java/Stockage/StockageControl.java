@@ -82,12 +82,4 @@ public class StockageControl implements Serializable{
     public void lireStockage(ComponentSystemEvent event) {
         StorageSaisie = StockageDao.getStockage();
     }*/
-    
-    public void StockageValueChanged() {
-        try {
-            SelectedStockage = StockageDao.getStockageByNom(SelectedStockageNom);
-        } catch (NullPointerException f) {
-            System.err.println(f.getMessage());
-        }
-    }
 }

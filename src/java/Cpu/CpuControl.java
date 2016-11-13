@@ -5,6 +5,7 @@
  */
 package Cpu;
 
+import Configuration.Configuration;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -26,15 +27,16 @@ public class CpuControl implements Serializable {
     private Cpu CpuSaisie;
     private Cpu SelectedCpu;
     private String SelectedCpuNom;
+    private Configuration config;
 
     public CpuControl() {
-        CpuSaisie = new Cpu();
+        
     }
 
     @PostConstruct
     public void init() {
-
         SelectedCpu = CpuDao.getCpuByNom("Intel Core i5-6600K (3.5 GHz)");
+        CpuSaisie = new Cpu();
     }
 
     public List<Cpu> getAllCpus() {
@@ -68,6 +70,7 @@ public class CpuControl implements Serializable {
      * public void lireCpu(ComponentSystemEvent event) { CpuSaisie =
      * CpuDao.getCpu(); }*
      */
+    
     public String getSelectedCpuNom() {
         return SelectedCpuNom;
     }
@@ -78,16 +81,5 @@ public class CpuControl implements Serializable {
 
     public Cpu getSelectedCpu() {
         return SelectedCpu;
-    }
-
-    public void CpuValueChanged() {
-        try {
-            SelectedCpu = CpuDao.getCpuByNom(SelectedCpuNom);
-            System.out.println(SelectedCpu.toString());
-            // F param
-            // .Stream.filter 
-        } catch (NullPointerException f) {
-            System.err.println(f);
-        }
     }
 }

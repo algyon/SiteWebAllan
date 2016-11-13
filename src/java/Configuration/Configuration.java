@@ -195,7 +195,7 @@ public class Configuration implements Serializable {
 
     @Override
     public String toString() {
-        return "buildatoryPCK.Configuration[ nomConfig=" + nomConfig + " ]";
+        return nomConfig;
     }
-    
+
 }
