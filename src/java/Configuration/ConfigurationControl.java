@@ -58,7 +58,6 @@ public class ConfigurationControl implements Serializable {
      * Creates a new instance of ConfigurationControl
      */
     public ConfigurationControl() {
-
     }
 
     @PostConstruct
@@ -96,6 +95,7 @@ public class ConfigurationControl implements Serializable {
 
     public Configuration getSelectedConfig() {
         if (SelectedConfig.getNomConfig() == null) {
+            System.out.println("Selected config initialisé");
             SelectedConfig = ConfigurationDao.getConfigurationByNom(getNomConfig());
             this.setPrixBuild();
         }
@@ -215,43 +215,44 @@ public class ConfigurationControl implements Serializable {
         float Prixcalc = 0;
         String StringPrixCalc;
 
-        if (null != nomElement) switch (nomElement) {
-            case "stockage":
-                Prixcalc = prixSelect - this.getSelectedConfig().getNomStockage().getPrix();
-                break;
-            case "cpu":
-                Prixcalc = prixSelect - this.getSelectedConfig().getNomCpu().getPrix();
-                break;
-            case "cm":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomCm().getPrix();
-                break;
-            case "cg":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomCg().getPrix();
-                break;
-            case "alim":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomAlim().getPrix();
-                break;
-            case "boitier":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomBoitier().getPrix();
-                break;
-            case "ram":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomRam().getPrix();
-                break;
-            case "cooling":
-                Prixcalc = prixSelect-this.getSelectedConfig().getNomCooling().getPrix();
-                break;
-            default:
-                break;
+        if (null != nomElement) {
+            switch (nomElement) {
+                case "stockage":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomStockage().getPrix();
+                    break;
+                case "cpu":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomCpu().getPrix();
+                    break;
+                case "cm":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomCm().getPrix();
+                    break;
+                case "cg":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomCg().getPrix();
+                    break;
+                case "alim":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomAlim().getPrix();
+                    break;
+                case "boitier":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomBoitier().getPrix();
+                    break;
+                case "ram":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomRam().getPrix();
+                    break;
+                case "cooling":
+                    Prixcalc = prixSelect - this.getSelectedConfig().getNomCooling().getPrix();
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (Prixcalc < 0.0) {
             StringPrixCalc = " " + BigDecimal.valueOf(Prixcalc).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-        } else if (Prixcalc == 0.0){
+        } else if (Prixcalc == 0.0) {
             StringPrixCalc = "0.0";
         } else {
-            StringPrixCalc = " +" + BigDecimal.valueOf(Prixcalc).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            StringPrixCalc = " + " + BigDecimal.valueOf(Prixcalc).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
         }
-
         return StringPrixCalc;
     }
 
