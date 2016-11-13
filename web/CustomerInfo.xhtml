@@ -9,7 +9,27 @@
     <h:head>
         <title>CustomerInfo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <style type="text/css">
+        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
+    </h:head>
+    <h:body  style=" background: black"> 
+        <p:layout id="Layout" fullPage="true">
+            <!-- <p:layoutUnit id="LayoutNorth" position="north" style=" width:100%; height:100px;">
+ 
+                 <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px" />
+ 
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center">
+                <p:graphicImage id="Img1" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
+
+                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:40px; margin-bottom:70px; margin-left: 15px">
+                    <p:menuitem value="Sélection" url="#"/>
+                    <p:menuitem value="Customisation" url="#"/>
+                    <p:menuitem value="Facturation " url="#"/>
+                    <p:menuitem value="Paiement" url="#"/>
+                </p:steps>
+
+                <style type="text/css">
 
                     .ui-steps .ui-steps-item {
                         width: 24%;
@@ -60,61 +80,79 @@
 
                 
 
-                <div style="margin-top:75px; margin-left: 10px">
-                    <h3>Coordonnées</h3>
-                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
-                    <h:form id="form1">
-                        <h:panelGrid id="val" columns="3">
-                            <h:outputLabel value="Prénom*" for="prenom" /> 
-                            <h:inputText id="prenom" value="#{configurationControl.saisie.nomAlim}" title="Prenom" required="true" requiredMessage="Le prénom est requis" size="30"/>
-                            <p:message for="prenom" />
 
-                            <h:outputLabel value="Nom*" for="nom" />
-                            <h:inputText id="nom" title="Nom" required="true" requiredMessage="Le nom est requis" size="30"/>
+                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+
+                <h:form id="myform">
+                    <div style="margin-top:75px; margin-left: 10px">
+                        <h3>Coordonnées</h3>
+
+                        <h:panelGrid id="gridCoordo" columns="3" cellpadding="5">
+                            <p:outputLabel for="prenom" value="Prénom" />
+                            <p:inputText id="prenom" required="true"  requiredMessage="Le prénom est requis" size="30" /> 
+                            <p:message for="prenom"  />
+
+                            <p:outputLabel for="nom" value="Nom" />
+                            <p:inputText id="nom" required="true" requiredMessage="Le nom est requis" size="30"/>
                             <p:message for="nom" />
 
-                            <h:outputLabel value="Numéro de télephone*" for="tel" />
-                            <h:inputText id="tel" title="Tel" required="true" requiredMessage="Le numéro de téléphone est requis"/>
+                            <p:outputLabel for="tel" value="Téléphone" />
+                            <p:inputText id="tel" required="true" requiredMessage="Le numéro de téléphone est requis"/>
                             <p:message for="tel" />
 
-                            <h:outputLabel value="Email*" for="email" />
-                            <h:inputText id="email" title="Email" required="true" requiredMessage="L'email est requis" size="55"/>
+                            <p:outputLabel for="email" value="Email" />
+                            <p:inputText id="email" required="true" requiredMessage="L'email est requis" size="55"/>
                             <p:message for="email" />
 
-                            <h:outputLabel value="Adresse*" for="adresse" />
-                            <h:inputText id="adresse" title="N° de Voie, Type de Voie, Complément d'adresse, Code Postal et Ville" required="true" requiredMessage="L'adresse est requise" size="55" /> 
-                            <p:message for="adresse" />                    
+                            <p:outputLabel for="adresse" value="Adresse" />
+                            <p:inputText id="adresse" required="true" requiredMessage="L'adresse est requise" size="55" title="N° de Voie, Type de Voie, Complément d'adresse, Code Postal et Ville" />
+                            <p:message for="adresse" />
 
-                        </h:panelGrid>     
+                        </h:panelGrid>
                         <p:tooltip id="toolTipFocus" for="adresse" showEvent="focus" hideEvent="blur" />
-                    </h:form>
-                </div>
+                        <!--</h:form> -->
+                    </div>
 
-                <div style="margin-top:40px; margin-left: 10px">
-                    <h3>Livraison</h3>
-                    <!--<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-                     <p:outputLabel for="livraison" value="Livraison" />-->
-                    <p:selectOneRadio id="livraison" value="livraison" layout="grid" columns="1">
-                        <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="Je choisis la livraison à domicile"/> 
-                        <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="Je viens recuperer ma commande à l'usine" />
-                    </p:selectOneRadio>
-                    <!--</h:panelGrid> -->
-                </div>
 
-                <div style="margin-top:40px; margin-left: 10px">
-                    <h3>Montage</h3>
-                    <!--<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+                    <div style="margin-top:40px; margin-left: 10px"> 
+                        <h3>Livraison</h3>
+                        <!--<h:form id="form2"> 
                         <p:outputLabel for="livraison" value="Livraison" />-->
-                    <p:selectOneRadio id="montage" value="montage" layout="grid" columns="1">
-                        <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="Je choisis l'option de montage "/> 
-                        <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="Je souhaite monter ma config moi même"/> 
-                    </p:selectOneRadio>
-                    <!--</h:panelGrid> -->
-                </div>
-                
-                <p:commandButton id="boutonValider" value="Valider" update=":form1:val" style="margin-top:50px; margin-left:200px"/>
+                        <h:panelGrid id="gridLivraison" columns="2">
+                            <p:selectOneRadio id="livraison" value="livraison" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de livraison">
+                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="Je choisis la livraison à domicile"/> 
+                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="Je viens recuperer ma commande à l'usine" />
+                            </p:selectOneRadio>
+                            <p:message for="livraison" /> 
+                        </h:panelGrid>
+                        <!-- </h:form>-->
+                    </div>
 
+                    <div style="margin-top:40px; margin-left: 10px">
+                        <h3>Montage</h3>
+                        <!--<h:form id="form3">
+                        <p:outputLabel for="montage" value="Montage" />-->
+                        <h:panelGrid id="gridMontage" columns="3" >
+                            <p:selectOneRadio id="montage" value="montage" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de montage">
+                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="Je choisis l'option de montage "/> 
+                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="Je souhaite monter ma config moi même"/> 
+                            </p:selectOneRadio>
+                            <p:message for="montage" /> 
+                        </h:panelGrid> 
+                        <!-- </h:form> -->
+                    </div>
 
+                    <div style="margin-top:40px; margin-left: 200px">
+                        <h:panelGrid id="gridCondVente" columns="3" >
+                            <p:selectOneRadio id="conditionvente" layout="grid" columns="1" required="true" requiredMessage="Votre acceptation est requise">
+                                <f:selectItem itemLabel=" J’ai lu et j’accepte les conditions générales de vente *"/> 
+                            </p:selectOneRadio>
+                            <p:message for="conditionvente" /> 
+                        </h:panelGrid>
+
+                    </div>
+                </h:form>   
+                <p:commandButton id="boutonValider" value="Valider" update="myform" style="margin-top:50px; margin-left:300px"/>
             </p:layoutUnit>
         </p:layout> 
     </h:body>
