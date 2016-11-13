@@ -55,16 +55,12 @@ public class ConfigurationControl implements Serializable {
     private ConfigurationDao ConfigurationDao;
     private Configuration ConfigurationSaisie;
     private Configuration SelectedConfig;
-    @PersistenceContext(unitName = "SiteWebAllanPU")
-    private EntityManager em;
-    @Resource
-    private javax.transaction.UserTransaction utx;
+
 
     /**
      * Creates a new instance of ConfigurationControl
      */
     public ConfigurationControl() {
-
     }
 
     @PostConstruct
@@ -102,6 +98,7 @@ public class ConfigurationControl implements Serializable {
 
     public Configuration getSelectedConfig() {
         if (SelectedConfig.getNomConfig() == null) {
+            System.out.println("Selected config initialisé");
             SelectedConfig = ConfigurationDao.getConfigurationByNom(getNomConfig());
         }
         return SelectedConfig;
@@ -203,20 +200,27 @@ public class ConfigurationControl implements Serializable {
     public String calculPrixDiff(float prixSelect, String nomElement) {
         float Prixcalc = 0;
         String StringPrixCalc;
-
-        if (nomElement == "stockage"){
-            Prixcalc = SelectedConfig.getNomStockage().getPrix() - prixSelect;
-        } else if (nomElement == "cpu") {
-            Prixcalc = SelectedConfig.getNomCpu().getPrix() - prixSelect;
-            System.out.println("ICI YO");
-        } else if (nomElement == "cm"){
-            Prixcalc = SelectedConfig.getNomCm().getPrix() - prixSelect;
+        System.out.println(nomElement);
+        System.out.println(prixSelect);
+        if (null != nomElement)switch (nomElement) {
+            case "stockage":
+                Prixcalc = SelectedConfig.getNomStockage().getPrix() - prixSelect;
+                break;
+            case "cpu":
+                System.out.println(this.getSelectedConfig().getNomCpu().toString());
+                Prixcalc = this.getSelectedConfig().getNomCpu().getPrix() - prixSelect;
+                break;
+            case "cm":
+                Prixcalc = SelectedConfig.getNomCm().getPrix() - prixSelect;
+                break;
+            default:
+                break;
         }
         
         if (Prixcalc < 0) {
-            StringPrixCalc = "+" + BigDecimal.valueOf(Prixcalc).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+            StringPrixCalc = "" +BigDecimal.valueOf(Prixcalc).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
         } else {
-            StringPrixCalc = "-" + BigDecimal.valueOf(Prixcalc).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+            StringPrixCalc = "+" + BigDecimal.valueOf(Prixcalc).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
         }
 
         return StringPrixCalc;
