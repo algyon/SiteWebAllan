@@ -9,12 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        <h:form>
+        <h:form> 
             <p:accordionPanel multiple="true">
                 <p:tab title="Processeur">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCpu.nomCpu}">
-                        <p:ajax event="change" update="panel_titre_cpu panel_contenu_cpu" listener="#{configurationControl.cpuValueChanged}"/>
-                        <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} -- #{configurationControl.calculPrixDiff(cpu.prix,'cpu')}€" />
+                        <p:ajax event="change" update="panel_titre_cpu panel_contenu_cpu j_idt5:PrixConfig" listener="#{configurationControl.cpuValueChanged}"/>
+                        <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} (#{configurationControl.calculPrixDiff(cpu.prix,'cpu')})€" />
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cpu">
                         <h:outputText value="#{configurationControl.selectedConfig.nomCpu.nomCpu}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -35,10 +35,32 @@
                         <p:graphicImage></p:graphicImage>
                     </h:panelGrid>
                 </p:tab>
+                <p:tab title="Cooling">
+                    <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCooling.nomCooling}">
+                        <p:ajax event="change" update="panel_titre_cooling panel_contenu_cooling j_idt5:PrixConfig" listener="#{configurationControl.coolingValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.cooling}" var="cooling" itemLabel="#{cooling.nomCooling} (#{configurationControl.calculPrixDiff(cooling.prix,'cooling')})€" />
+                    </p:selectOneMenu>
+                    <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cooling">
+                        <h:outputText value="#{configurationControl.selectedConfig.nomCooling.nomCooling}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="5" id="panel_contenu_cooling">
+                        <h:outputText value="Type de Refroidissement:" style="font-weight:bold" />
+                        <h:outputText value="#{configurationControl.selectedConfig.nomCooling.type}" />
+                        <h:outputText value="Matériau de dissipation" style="font-weight: bold" />
+                        <h:outputText value="#{configurationControl.selectedConfig.nomCooling.heatSinkMat}" />
+                        <h:outputText value="Description:" style="font-weight: bold" />
+                        <h:outputText value="#{configurationControl.selectedConfig.nomCpu.description}" />
+                        <h:outputText value="Prix:" style="font-weight: bold" />
+                        <h:outputText value="#{configurationControl.selectedConfig.nomCpu.prix}€" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" >
+                        <p:graphicImage></p:graphicImage>
+                    </h:panelGrid>
+                </p:tab>
                 <p:tab title="Carte Mère">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCm.nomCm}">
-                        <p:ajax event="change" update="panel_titre_cm panel_contenu_cm" listener="#{configurationControl.cmValueChanged}"/>
-                        <f:selectItems value="#{tabbedView.CM}" var="cm" itemLabel="#{cm.nomCm} -- #{configurationControl.calculPrixDiff(cm.prix,'cm')}€"/>
+                        <p:ajax event="change" update="panel_titre_cm panel_contenu_cm j_idt5:PrixConfig" listener="#{configurationControl.cmValueChanged}"/>
+                        <f:selectItems value="#{tabbedView.CM}" var="cm" itemLabel="#{cm.nomCm} (#{configurationControl.calculPrixDiff(cm.prix,'cm')}€)"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cm">
                         <h:outputText value="#{configurationControl.selectedConfig.nomCm.nomCm}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -64,8 +86,8 @@
                 </p:tab>
                 <p:tab title="Carte Graphique">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCg.nomCg}">
-                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg" listener="#{configurationControl.cgValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} -- #{configurationControl.calculPrixDiff(cg.prix,'cg')}€"/>
+                        <p:ajax event="change" update="panel_titre_cg panel_contenu_cg j_idt5:PrixConfig" listener="#{configurationControl.cgValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} (#{configurationControl.calculPrixDiff(cg.prix,'cg')})€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_cg">
                         <h:outputText value="#{configurationControl.selectedConfig.nomCg.nomCg}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -89,8 +111,8 @@
                 </p:tab>
                 <p:tab title="Ram">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomRam.nomRam}">
-                        <p:ajax event="change" update="panel_titre_ram panel_contenu_ram" listener="#{configurationControl.ramValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.ram}" var="ram" itemLabel="#{ram.nomRam} -- #{configurationControl.calculPrixDiff(ram.prix,'ram')}€"/>
+                        <p:ajax event="change" update="panel_titre_ram panel_contenu_ram j_idt5:PrixConfig" listener="#{configurationControl.ramValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.ram}" var="ram" itemLabel="#{ram.nomRam} (#{configurationControl.calculPrixDiff(ram.prix,'ram')})€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_ram">
                         <h:outputText value="#{configurationControl.selectedConfig.nomRam.nomRam}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -110,8 +132,8 @@
                 </p:tab>
                 <p:tab title="Stockage">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomStockage.nomStockage}">
-                        <p:ajax event="change" update="panel_titre_stockage panel_contenu_stockage" listener="#{configurationControl.stockageValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.stockage}" var="stockage" itemLabel="#{stockage.nomStockage} -- #{configurationControl.calculPrixDiff(stockage.prix,'stockage')}€"/>
+                        <p:ajax event="change" update="panel_titre_stockage panel_contenu_stockage j_idt5:PrixConfig" listener="#{configurationControl.stockageValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.stockage}" var="stockage" itemLabel="#{stockage.nomStockage} (#{configurationControl.calculPrixDiff(stockage.prix,'stockage')})€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_stockage">
                         <h:outputText value="#{configurationControl.selectedConfig.nomStockage.nomStockage}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -131,8 +153,8 @@
                 </p:tab>
                 <p:tab title="Boitier">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomBoitier.nomBoitier}">
-                        <p:ajax event="change" update="panel_titre_boitier panel_contenu_boitier" listener="#{configurationControl.boitierValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.boitier}" var="boitier" itemLabel="#{boitier.nomBoitier} -- #{configurationControl.calculPrixDiff(boitier.prix,'boitier')}€"/>
+                        <p:ajax event="change" update="panel_titre_boitier panel_contenu_boitier j_idt5:PrixConfig" listener="#{configurationControl.boitierValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.boitier}" var="boitier" itemLabel="#{boitier.nomBoitier} (#{configurationControl.calculPrixDiff(boitier.prix,'boitier')})€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_boitier">
                         <h:outputText value="#{configurationControl.selectedConfig.nomBoitier.nomBoitier}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -150,8 +172,8 @@
                 </p:tab>
                 <p:tab title="Alimentation">
                     <p:selectOneMenu value="#{configurationControl.selectedConfig.nomAlim.nomAlim}">
-                        <p:ajax event="change" update="panel_titre_alim panel_contenu_alim" listener="#{configurationControl.alimentationValueChanged()}"/>
-                        <f:selectItems value="#{tabbedView.alimentation}" var="alim" itemLabel="#{alim.nomAlim} -- #{configurationControl.calculPrixDiff(alim.prix,'alim')}€"/>
+                        <p:ajax event="change" update="panel_titre_alim panel_contenu_alim j_idt5:PrixConfig" listener="#{configurationControl.alimentationValueChanged()}"/>
+                        <f:selectItems value="#{tabbedView.alimentation}" var="alim" itemLabel="#{alim.nomAlim} (#{configurationControl.calculPrixDiff(alim.prix,'alim')})€"/>
                     </p:selectOneMenu>
                     <h:panelGrid columns="1" cellpadding="10" id="panel_titre_alim">
                         <h:outputText value="#{configurationControl.selectedConfig.nomAlim.nomAlim}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
@@ -168,11 +190,7 @@
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>
-            <p:stack id="prix_total">
-                <p:menuitem value="50€"/>
-            </p:stack>
-            <p:sticky target="prix_total"/>
+            <h:outputText id ="PrixConfig" value="#{configurationControl.prixSelectedConfig}"/>
         </h:form>
-
     </body>
 </html>
