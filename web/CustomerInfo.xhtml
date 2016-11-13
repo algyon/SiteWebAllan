@@ -6,86 +6,57 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    
     <h:head>
-        <title>CustomerInfo</title>
+        <title>Customer Info</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
+        <style type="text/css">
+
+            .ui-steps .ui-steps-item {
+                width: 24%;
+            }
+
+            .ui-state-highlight {
+                text-shadow: none !important;
+            }
+
+            .ui-steps.custom {
+                margin-bottom: 30px;
+            }
+
+            .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+                height: 10px;
+                padding: 0 1em;
+            }
+
+            .ui-steps.custom .ui-steps-item .ui-steps-number {
+                background-color: #0081c2;
+                color: #FFFFFF;
+                display: inline-block;
+                width: 30px;
+                border-radius: 10px;
+                margin-top: -10px;
+                margin-bottom: 10px;
+            }
+        </style>
     </h:head>
     <h:body  style=" background: black"> 
         <p:layout id="Layout" fullPage="true">
-            <!-- <p:layoutUnit id="LayoutNorth" position="north" style=" width:100%; height:100px;">
- 
-                 <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px" />
- 
-             </p:layoutUnit> -->
-
-            <p:layoutUnit position="center">
-                <p:graphicImage id="Img1" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
-
-                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:40px; margin-bottom:70px; margin-left: 15px">
+            <p:layoutUnit position="center" >
+                <p:graphicImage value="resources/images/Banner1.jpg" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
+                <p:separator />
+                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:25px; margin-bottom:90px">
                     <p:menuitem value="Sélection" url="#"/>
                     <p:menuitem value="Customisation" url="#"/>
                     <p:menuitem value="Facturation " url="#"/>
                     <p:menuitem value="Paiement" url="#"/>
-                </p:steps>
-
-                <style type="text/css">
-
-                    .ui-steps .ui-steps-item {
-                        width: 24%;
-                    }
-
-                    .ui-state-highlight {
-                        text-shadow: none !important;
-                    }
-
-                    .ui-steps.custom {
-                        margin-bottom: 30px;
-                    }
-
-                    .ui-steps.custom .ui-steps-item .ui-menuitem-link {
-                        height: 10px;
-                        padding: 0 1em;
-                    }
-
-                    .ui-steps.custom .ui-steps-item .ui-steps-number {
-                        background-color: #0081c2;
-                        color: #FFFFFF;
-                        display: inline-block;
-                        width: 30px;
-                        border-radius: 10px;
-                        margin-top: -10px;
-                        margin-bottom: 10px;
-                    }
-                </style>
-        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
-    </h:head>
-    <h:body  style=" background: black"> 
-        <p:layout id="Layout" fullPage="true">
-            <!-- <p:layoutUnit id="LayoutNorth" position="north" style=" width:100%; height:100px;">
- 
-                 <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px" />
- 
-             </p:layoutUnit> -->
-
-            <p:layoutUnit position="center">
-                <p:graphicImage id="Img1" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
-
-                <p:steps activeIndex="2" styleClass="custom" readonly="false" style="margin-top:40px; margin-bottom:70px; margin-left: 15px">
-                    <p:menuitem value="Sélection" url="#"/>
-                    <p:menuitem value="Customisation" url="#"/>
-                    <p:menuitem value="Facturation " url="#"/>
-                    <p:menuitem value="Payement" url="#"/>
-                </p:steps>
-
-                
-
+                </p:steps>     
 
                 <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 
-                <h:form id="myform">
-                    <div style="margin-top:75px; margin-left: 10px">
-                        <h3>Coordonnées</h3>
+                <h:form id="myform" style="margin-left:30px">
+                    <div style="margin-top:100px; margin-left: 10px">
+                        <h3 style="margin-left:30px" >Coordonnées</h3>
 
                         <h:panelGrid id="gridCoordo" columns="3" cellpadding="5">
                             <p:outputLabel for="prenom" value="Prénom" />
@@ -115,7 +86,7 @@
 
 
                     <div style="margin-top:40px; margin-left: 10px"> 
-                        <h3>Livraison</h3>
+                        <h3 style="margin-left:30px">Livraison</h3>
                         <!--<h:form id="form2"> 
                         <p:outputLabel for="livraison" value="Livraison" />-->
                         <h:panelGrid id="gridLivraison" columns="2">
@@ -129,7 +100,7 @@
                     </div>
 
                     <div style="margin-top:40px; margin-left: 10px">
-                        <h3>Montage</h3>
+                        <h3 style="margin-left:30px">Montage</h3>
                         <!--<h:form id="form3">
                         <p:outputLabel for="montage" value="Montage" />-->
                         <h:panelGrid id="gridMontage" columns="3" >
@@ -152,7 +123,7 @@
 
                     </div>
                 </h:form>   
-                <p:commandButton id="boutonValider" value="Valider" update="myform" style="margin-top:50px; margin-left:300px"/>
+                <p:commandButton id="boutonValider" value="Valider" update="myform" style="margin-top:50px; margin-left:300px; margin-bottom:80px"/>
             </p:layoutUnit>
         </p:layout> 
     </h:body>

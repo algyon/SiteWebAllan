@@ -9,7 +9,6 @@
     <h:head>
         <title>Choice</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--<h:outputStylesheet library="exemple" name="css/mycss.css" />-->
         <style type="text/css">
 
             .ui-steps .ui-steps-item {
@@ -42,35 +41,54 @@
     </h:head>
     <h:body  style=" background: black"> 
         <p:layout id="Layout" fullPage="true">
-            <p:layoutUnit id="LayoutNorth" position="north" resizable="false" style=" position: absolute; resize:false; width:100%; height:100px; overflow: hidden">
-                <p:graphicImage id="Img" value="resources/images/Banniere.png" alt="Banniere" title="Banniere" style="resize: false; width:100%; height:100px" />
-            </p:layoutUnit> 
-            <p:layoutUnit position="center">
-                <p:steps activeIndex="0" styleClass="custom" readonly="false" style="margin-top:15px; margin-bottom:100px">
+            <p:layoutUnit position="center" >
+                <p:graphicImage value="resources/images/Banner1.jpg" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
+                <p:separator />
+                <p:steps activeIndex="0" styleClass="custom" readonly="false" style="margin-top:25px; margin-bottom:90px">
                     <p:menuitem value="Sélection" url="#"/>
                     <p:menuitem value="Customisation" url="#"/>
                     <p:menuitem value="Facturation " url="#"/>
-                    <p:menuitem value="Payement" url="#"/>
+                    <p:menuitem value="Paiement" url="#"/>
                 </p:steps>               
-                <h3>Choose your starting configuration </h3>
+                <h3 style="margin-left: 30px; margin-top: 100px">Choisissez votre configuration de départ :</h3>
                 <p:accordionPanel multiple="true" value="#{tabbedView.configuration}" var="item">
                     <p:tab title="#{item.nomConfig}">
-                        <h:panelGrid columns="1" cellpadding="10">
-                            <p:graphicImage name="resources/images/Logo.png" /> <!-- recup adresse image-->
-                            <h:outputText value="#{item.description}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
-                            <h:outputText value="#{item.nomCpu}"/>
-                            <h:outputText value="#{item.nomCm}"/>
-                            <h:outputText value="#{item.nomCg}"/>
-                            <h:outputText value="#{item.nomRam}"/>
-                            <h:outputText value="#{item.nomStockage}"/>
-                            <h:outputText value="#{item.nomCooling}"/>
-                            <h:outputText value="#{item.nomBoitier}"/>
-                            <h:outputText value="#{item.nomAlim}"/>
-                            <h:outputText value="#{configurationControl.getPrix(item.nomConfig)}" style="font-weight: bold; font-size: 30px; font-family: sans-serif"/>
-                            <p:button value="Configurer !" outcome="Build">
+                        <h:outputText value="#{item.description}" style="font-weight: bold; font-size: 22px; font-family: sans-serif; color: #F7931D"/>
+
+                        <h:panelGrid columns="2" cellpadding="8"> 
+                            <p:graphicImage value="#{item.img}" style="width:400px;" /> 
+                            <h:panelGrid columns="2" cellpadding="8" style="margin">
+                                <p:outputLabel for="cpu" value="Processeur:" />
+                                <h:outputText id="cpu" value="#{item.nomCpu}"/>
+
+                                <p:outputLabel for="cm" value="Carte mère:" />
+                                <h:outputText id="cm" value="#{item.nomCm}"/>
+
+                                <p:outputLabel for="cg" value="Carte graphique:" />
+                                <h:outputText id="cg" value="#{item.nomCg}"/>
+
+                                <p:outputLabel for="ram" value="Ram:" />
+                                <h:outputText id="ram" value="#{item.nomRam}"/>
+
+                                <p:outputLabel for="stockage" value="Stockage:" />
+                                <h:outputText id="stockage" value="#{item.nomStockage}"/>
+
+                                <p:outputLabel for="cooling" value="Cooling:" />
+                                <h:outputText id="cooling" value="#{item.nomCooling}"/>
+
+                                <p:outputLabel for="boitier" value="Boitier:" />
+                                <h:outputText id="boitier" value="#{item.nomBoitier}"/>
+
+                                <p:outputLabel for="alim" value="Alimentation:" />
+                                <h:outputText id="alim" value="#{item.nomAlim}"/>
+
+                                <p:outputLabel for="prix" value="Prix:" style="font-weight: bold"/>
+                                <h:outputText id="prix" value="#{configurationControl.getPrix(item.nomConfig)} €" style="font-weight: bold; font-size: 30px; font-family: sans-serif; color: #F8B01D"/>
+                            </h:panelGrid>
+                        </h:panelGrid>    
+                        <p:button value="Configurer" outcome="Build" style="margin-left: 850px">
                                 <f:param name="nomConfig" value="#{item.nomConfig}"/>
                             </p:button>
-                        </h:panelGrid>
                     </p:tab>
                 </p:accordionPanel>
             </p:layoutUnit>
