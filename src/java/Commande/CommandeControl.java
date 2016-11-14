@@ -24,6 +24,8 @@ public class CommandeControl implements Serializable {
     @EJB
     private CommandeDao CommandeDao;
     private Commande CommandeSaisie;
+    private boolean CommandeExpe;
+    private boolean CommandeMontage;
 
     public CommandeControl() {
         CommandeSaisie = new Commande();
@@ -60,9 +62,35 @@ public class CommandeControl implements Serializable {
         CommandeDao.update(CommandeSaisie);
         return "liste";
     }
-
     
     public void lireCommande(ComponentSystemEvent event) {
         CommandeSaisie = CommandeDao.getCommande();
     }
+
+    public Commande getCommandeSaisie() {
+        return CommandeSaisie;
+    }
+
+    public void setCommandeSaisie(Commande CommandeSaisie) {
+        this.CommandeSaisie = CommandeSaisie;
+    }
+
+    public boolean isCommandeMontage() {
+        return CommandeMontage;
+    }
+
+    public void setCommandeMontage(boolean CommandeMontage) {
+        this.CommandeMontage = CommandeMontage;
+    }
+
+    public boolean isCommandeExpe() {
+        return CommandeExpe;
+    }
+
+    public void setCommandeExpe(boolean CommandeExpe) {
+        this.CommandeExpe = CommandeExpe;
+    }
+    
+    
+    
 }

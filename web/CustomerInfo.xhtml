@@ -81,42 +81,33 @@
 
                         </h:panelGrid>
                         <p:tooltip id="toolTipFocus" for="adresse" showEvent="focus" hideEvent="blur" />
-                        <!--</h:form> -->
                     </div>
 
 
-                    <div style="margin-top:40px; margin-left: 10px"> 
+                    <div id="livraisonDiv" style="margin-top:40px; margin-left: 10px"> 
                         <h3 style="margin-left:30px">Livraison</h3>
-                        <!--<h:form id="form2"> 
-                        <p:outputLabel for="livraison" value="Livraison" />-->
                         <h:panelGrid id="gridLivraison" columns="2">
                             <p:selectOneRadio id="livraison" value="#{CommandeControl.saisie.expedition}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de livraison">
-                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="1"/> 
-                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="0" />
+                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="#{false}" />
                             </p:selectOneRadio>
                             <p:message for="livraison" /> 
                         </h:panelGrid>
-                        <!-- </h:form>-->
                     </div>
-
-                    <div style="margin-top:40px; margin-left: 10px">
+                    <div id="expeditionDiv" style="margin-top:40px; margin-left: 10px">
                         <h3 style="margin-left:30px">Montage</h3>
-                        <!--<h:form id="form3">
-                        <p:outputLabel for="montage" value="Montage" />-->
-                        <h:panelGrid id="gridMontage" columns="3" >
+                        <h:panelGrid id="gridMontage" columns="2" >
                             <p:selectOneRadio id="montage" value="#{CommandeControl.saisie.montage}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de montage">
-                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="1 "/> 
-                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="0"/> 
+                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="#{false}" /> 
                             </p:selectOneRadio>
                             <p:message for="montage" /> 
                         </h:panelGrid> 
-                        <!-- </h:form> -->
                     </div>
-
-                    <div style="margin-top:40px; margin-left: 200px">
+                    <div id="CGUDiv" style="margin-top:40px; margin-left: 200px">
                         <h:panelGrid id="gridCondVente" columns="3" >
                             <p:selectOneRadio id="conditionvente" layout="grid" columns="1" required="true" requiredMessage="Votre acceptation est requise">
-                                <f:selectItem itemLabel=" J’ai lu et j’accepte les conditions générales de vente *"/> 
+                                <f:selectItem itemValue="false" itemLabel=" J’ai lu et j’accepte les conditions générales de vente *"/> 
                             </p:selectOneRadio>
                             <p:message for="conditionvente" /> 
                         </h:panelGrid>
