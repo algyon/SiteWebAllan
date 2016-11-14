@@ -48,7 +48,7 @@ public class CommandeControl implements Serializable {
 
     public String save() {
         CommandeDao.save(CommandeSaisie);
-        return "liste";
+        return "Welcome";
     }
 
     public String delete() {
