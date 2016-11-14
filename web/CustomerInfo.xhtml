@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    
+
     <h:head>
         <title>Buildatory : Facturation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -60,60 +60,51 @@
 
                         <h:panelGrid id="gridCoordo" columns="3" cellpadding="5">
                             <p:outputLabel for="prenom" value="Prénom" />
-                            <p:inputText id="prenom" required="true"  requiredMessage="Le prénom est requis" size="30" /> 
+                            <p:inputText id="prenom" required="true" value="#{CommandeControl.saisie.prenomU}" requiredMessage="Le prénom est requis" size="30" /> 
                             <p:message for="prenom"  />
 
                             <p:outputLabel for="nom" value="Nom" />
-                            <p:inputText id="nom" required="true" requiredMessage="Le nom est requis" size="30"/>
+                            <p:inputText id="nom" required="true" value="#{CommandeControl.saisie.nomU}" requiredMessage="Le nom est requis" size="30"/>
                             <p:message for="nom" />
 
                             <p:outputLabel for="tel" value="Téléphone" />
-                            <p:inputText id="tel" required="true" requiredMessage="Le numéro de téléphone est requis"/>
+                            <p:inputText id="tel" required="true" value="#{CommandeControl.saisie.telephoneU}" requiredMessage="Le numéro de téléphone est requis"/>
                             <p:message for="tel" />
 
                             <p:outputLabel for="email" value="Email" />
-                            <p:inputText id="email" required="true" requiredMessage="L'email est requis" size="55"/>
+                            <p:inputText id="email" required="true" value="#{CommandeControl.saisie.mailU}" requiredMessage="L'email est requis" size="55"/>
                             <p:message for="email" />
 
                             <p:outputLabel for="adresse" value="Adresse" />
-                            <p:inputText id="adresse" required="true" requiredMessage="L'adresse est requise" size="55" title="N° de Voie, Type de Voie, Complément d'adresse, Code Postal et Ville" />
+                            <p:inputText id="adresse" required="true" value="#{CommandeControl.saisie.adresseU}" requiredMessage="L'adresse est requise" size="55" title="N° de Voie, Type de Voie, Complément d'adresse, Code Postal et Ville" />
                             <p:message for="adresse" />
 
                         </h:panelGrid>
                         <p:tooltip id="toolTipFocus" for="adresse" showEvent="focus" hideEvent="blur" />
-                        <!--</h:form> -->
                     </div>
 
 
-                    <div style="margin-top:40px; margin-left: 10px"> 
+                    <div id="livraisonDiv" style="margin-top:40px; margin-left: 10px"> 
                         <h3 style="margin-left:30px">Livraison</h3>
-                        <!--<h:form id="form2"> 
-                        <p:outputLabel for="livraison" value="Livraison" />-->
                         <h:panelGrid id="gridLivraison" columns="2">
-                            <p:selectOneRadio id="livraison" value="livraison" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de livraison">
-                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="Je choisis la livraison à domicile"/> 
-                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="Je viens recuperer ma commande à l'usine" />
+                            <p:selectOneRadio id="livraison" value="#{CommandeControl.saisie.expedition}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de livraison">
+                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="#{false}" />
                             </p:selectOneRadio>
                             <p:message for="livraison" /> 
                         </h:panelGrid>
-                        <!-- </h:form>-->
                     </div>
-
-                    <div style="margin-top:40px; margin-left: 10px">
+                    <div id="expeditionDiv" style="margin-top:40px; margin-left: 10px">
                         <h3 style="margin-left:30px">Montage</h3>
-                        <!--<h:form id="form3">
-                        <p:outputLabel for="montage" value="Montage" />-->
-                        <h:panelGrid id="gridMontage" columns="3" >
-                            <p:selectOneRadio id="montage" value="montage" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de montage">
-                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="Je choisis l'option de montage "/> 
-                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="Je souhaite monter ma config moi même"/> 
+                        <h:panelGrid id="gridMontage" columns="2" >
+                            <p:selectOneRadio id="montage" value="#{CommandeControl.saisie.montage}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de montage">
+                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="#{false}" /> 
                             </p:selectOneRadio>
                             <p:message for="montage" /> 
                         </h:panelGrid> 
-                        <!-- </h:form> -->
                     </div>
-
-                    <div style="margin-top:40px; margin-left: 200px">
+                    <div id="CGUDiv" style="margin-top:40px; margin-left: 200px">
                         <h:panelGrid id="gridCondVente" columns="3" >
                             <p:selectOneRadio id="conditionvente" layout="grid" columns="1" required="true" requiredMessage="Votre acceptation est requise">
                                 <f:selectItem itemValue="false" itemLabel=" J’ai lu et j’accepte les conditions générales de vente *"/> 
@@ -123,7 +114,7 @@
 
                     </div>
                 </h:form>   
-                <p:commandButton id="boutonValider" value="Valider" update="myform" style="margin-top:50px; margin-left:420px; margin-bottom:80px"/>
+                <p:commandButton id="boutonValider" value="Valider" update="myform" action="Paiement" style="margin-top:50px; margin-left:300px; margin-bottom:80px"/>
             </p:layoutUnit>
         </p:layout> 
     </h:body>

@@ -100,14 +100,6 @@ public class Commande implements Serializable {
     private String nomAlim;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "montage")
-    private int montage;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "expedition")
-    private int expedition;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "nomU")
     private String nomU;
@@ -130,6 +122,18 @@ public class Commande implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "adresseU")
     private String adresseU;
+        @Basic(optional = false)
+    @NotNull
+    @Column(name = "montage")
+    private boolean montage;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "expedition")
+    private boolean expedition;
+    @Column(name = "isExpedie")
+    private Boolean isExpedie;
+    @Column(name = "isMonte")
+    private Boolean isMonte;
     @Basic(optional = false)
     @NotNull
     @Column(name = "prix_total")
@@ -142,7 +146,7 @@ public class Commande implements Serializable {
         this.idCommande = idCommande;
     }
 
-    public Commande(Integer idCommande, Date dateCommande, String nomCpu, String nomCm, String nomCg, String nomRam, String nomStockage, String nomCooling, String nomBoitier, String nomAlim, int montage, int expedition, String nomU, String prenomU, int telephoneU, String mailU, String adresseU, float prixTotal) {
+    public Commande(Integer idCommande, Date dateCommande, String nomCpu, String nomCm, String nomCg, String nomRam, String nomStockage, String nomCooling, String nomBoitier, String nomAlim, boolean montage, boolean expedition, String nomU, String prenomU, int telephoneU, String mailU, String adresseU, float prixTotal, boolean isExpedie,boolean isMonte) {
         this.idCommande = idCommande;
         this.dateCommande = dateCommande;
         this.nomCpu = nomCpu;
@@ -160,6 +164,8 @@ public class Commande implements Serializable {
         this.telephoneU = telephoneU;
         this.mailU = mailU;
         this.adresseU = adresseU;
+        this.isExpedie = isExpedie;
+        this.isMonte = isMonte;
         this.prixTotal = prixTotal;
     }
 
@@ -243,21 +249,6 @@ public class Commande implements Serializable {
         this.nomAlim = nomAlim;
     }
 
-    public int getMontage() {
-        return montage;
-    }
-
-    public void setMontage(int montage) {
-        this.montage = montage;
-    }
-
-    public int getExpedition() {
-        return expedition;
-    }
-
-    public void setExpedition(int expedition) {
-        this.expedition = expedition;
-    }
 
     public String getNomU() {
         return nomU;
@@ -298,6 +289,38 @@ public class Commande implements Serializable {
     public void setAdresseU(String adresseU) {
         this.adresseU = adresseU;
     }
+    
+    public boolean getMontage() {
+        return montage;
+    }
+
+    public void setMontage(boolean montage) {
+        this.montage = montage;
+    }
+
+    public boolean getExpedition() {
+        return expedition;
+    }
+
+    public void setExpedition(boolean expedition) {
+        this.expedition = expedition;
+    }
+
+    public Boolean getIsExpedie() {
+        return isExpedie;
+    }
+
+    public void setIsExpedie(Boolean isExpedie) {
+        this.isExpedie = isExpedie;
+    }
+
+    public Boolean getIsMonte() {
+        return isMonte;
+    }
+
+    public void setIsMonte(Boolean isMonte) {
+        this.isMonte = isMonte;
+    }
 
     public float getPrixTotal() {
         return prixTotal;
@@ -331,5 +354,7 @@ public class Commande implements Serializable {
     public String toString() {
         return "Commande.Commande[ idCommande=" + idCommande + " ]";
     }
+
+    
     
 }

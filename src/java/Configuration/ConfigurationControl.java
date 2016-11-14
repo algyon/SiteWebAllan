@@ -26,7 +26,9 @@ import javax.inject.Named;
 /**
  *
  * @author Alexandra
+ * 
  */
+
 @Named(value = "configurationControl")
 @ViewScoped
 public class ConfigurationControl implements Serializable {
@@ -278,7 +280,6 @@ public class ConfigurationControl implements Serializable {
     public void setPrixBuild() {
         float PrixConfig;
         PrixConfig = 0;
-        System.out.println("Je suis bien appellé");
         try {
             PrixConfig = SelectedConfig.getNomAlim().getPrix()
                     + SelectedConfig.getNomCpu().getPrix()
@@ -290,7 +291,6 @@ public class ConfigurationControl implements Serializable {
                     + SelectedConfig.getNomStockage().getPrix();
         } catch (NullPointerException e) {
             e.getMessage();
-            System.out.println("NIQUE TA MERE");
         }
         this.setPrixSelectedConfig(BigDecimal.valueOf(PrixConfig).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue());
     }
