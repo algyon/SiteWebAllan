@@ -11,7 +11,7 @@
         <style type="text/css">
 
             .ui-steps .ui-steps-item {
-                width: 24%;
+                width: 25%;
             }
 
             .ui-state-highlight {
@@ -51,11 +51,20 @@
                 </p:steps>               
                 <h3 style="margin-left: 30px; margin-top: 100px">Customisez votre configuration :</h3>
                 <h:form> 
+                    <p:panel id="tb" style=" position: fixed; top: 380px; z-index:99; left:1300px">
+                        <h:outputLabel for="PrixConfig" value="Prix total : " style="font-weight: bold" />
+                        <h:outputText value="#{configurationControl.selectedConfig}" style="display: none;height: 1px;width: 1px"/>
+                        <h:outputText id ="PrixConfig" value="#{configurationControl.prixSelectedConfig}€" style="font-weight: bold; font-size: 20px; font-family: sans-serif; color: #F8B01D; right:20px;"/>
+                        <br></br>
+                        <p:button value="Valider" outcome="CustomerInfo" style="margin-top: 10px; margin-left:19px"/>
+                    </p:panel>
+
+                    <p:sticky target="tb"/>
                     <p:accordionPanel multiple="true">
                         <p:tab title="Processeur">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCpu.nomCpu}">
-                                <p:ajax event="change" update="panel_contenu_cpu " listener="#{configurationControl.cpuValueChanged}"/>
-                                <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} (#{configurationControl.calculPrixDiff(cpu.prix,'cpu')})€" />
+                                <p:ajax event="change" update="panel_contenu_cpu j_idt14:PrixConfig" listener="#{configurationControl.cpuValueChanged}"/>
+                                <f:selectItems value="#{tabbedView.cpu}" var="cpu" itemLabel="#{cpu.nomCpu} (#{configurationControl.calculPrixDiff(cpu.prix,'cpu')}€)" />
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_cpu" style="margin-top: 10px"> 
@@ -80,8 +89,8 @@
 
                         <p:tab title="Cooling">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCooling.nomCooling}">
-                                <p:ajax event="change" update="panel_contenu_cooling" listener="#{configurationControl.coolingValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.cooling}" var="cooling" itemLabel="#{cooling.nomCooling} (#{configurationControl.calculPrixDiff(cooling.prix,'cooling')})€" />
+                                <p:ajax event="change" update="panel_contenu_cooling j_idt14:PrixConfig" listener="#{configurationControl.coolingValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.cooling}" var="cooling" itemLabel="#{cooling.nomCooling} (#{configurationControl.calculPrixDiff(cooling.prix,'cooling')}€)" />
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_cooling" style="margin-top: 18px">
@@ -104,7 +113,7 @@
 
                         <p:tab title="Carte Mère">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCm.nomCm}">
-                                <p:ajax event="change" update="panel_contenu_cm " listener="#{configurationControl.cmValueChanged}"/>
+                                <p:ajax event="change" update="panel_contenu_cm j_idt14:PrixConfig" listener="#{configurationControl.cmValueChanged}"/>
                                 <f:selectItems value="#{tabbedView.CM}" var="cm" itemLabel="#{cm.nomCm} (#{configurationControl.calculPrixDiff(cm.prix,'cm')}€)"/>
                             </p:selectOneMenu>
 
@@ -136,8 +145,8 @@
 
                         <p:tab title="Carte Graphique">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomCg.nomCg}">
-                                <p:ajax event="change" update="panel_contenu_cg " listener="#{configurationControl.cgValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} (#{configurationControl.calculPrixDiff(cg.prix,'cg')})€"/>
+                                <p:ajax event="change" update="panel_contenu_cg j_idt14:PrixConfig" listener="#{configurationControl.cgValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.CG}" var="cg" itemLabel="#{cg.nomCg} (#{configurationControl.calculPrixDiff(cg.prix,'cg')}€)"/>
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_cg" style="margin-top: 10px">
@@ -166,8 +175,8 @@
 
                         <p:tab title="Ram">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomRam.nomRam}">
-                                <p:ajax event="change" update="panel_contenu_ram " listener="#{configurationControl.ramValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.ram}" var="ram" itemLabel="#{ram.nomRam} (#{configurationControl.calculPrixDiff(ram.prix,'ram')})€"/>
+                                <p:ajax event="change" update="panel_contenu_ram j_idt14:PrixConfig" listener="#{configurationControl.ramValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.ram}" var="ram" itemLabel="#{ram.nomRam} (#{configurationControl.calculPrixDiff(ram.prix,'ram')}€)"/>
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_ram" style="margin-top: 10px">
@@ -192,8 +201,8 @@
 
                         <p:tab title="Stockage">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomStockage.nomStockage}">
-                                <p:ajax event="change" update="panel_contenu_stockage " listener="#{configurationControl.stockageValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.stockage}" var="stockage" itemLabel="#{stockage.nomStockage} (#{configurationControl.calculPrixDiff(stockage.prix,'stockage')})€"/>
+                                <p:ajax event="change" update="panel_contenu_stockage j_idt14:PrixConfig" listener="#{configurationControl.stockageValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.stockage}" var="stockage" itemLabel="#{stockage.nomStockage} (#{configurationControl.calculPrixDiff(stockage.prix,'stockage')}€)"/>
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_stockage" style="margin-top: 10px">
@@ -218,8 +227,8 @@
 
                         <p:tab title="Boitier">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomBoitier.nomBoitier}">
-                                <p:ajax event="change" update=" panel_contenu_boitier " listener="#{configurationControl.boitierValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.boitier}" var="boitier" itemLabel="#{boitier.nomBoitier} (#{configurationControl.calculPrixDiff(boitier.prix,'boitier')})€"/>
+                                <p:ajax event="change" update=" panel_contenu_boitier j_idt14:PrixConfig" listener="#{configurationControl.boitierValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.boitier}" var="boitier" itemLabel="#{boitier.nomBoitier} (#{configurationControl.calculPrixDiff(boitier.prix,'boitier')}€)"/>
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_boitier" style="margin-top: 10px">
@@ -242,8 +251,8 @@
 
                         <p:tab title="Alimentation">
                             <p:selectOneMenu value="#{configurationControl.selectedConfig.nomAlim.nomAlim}">
-                                <p:ajax event="change" update="panel_contenu_alim " listener="#{configurationControl.alimentationValueChanged()}"/>
-                                <f:selectItems value="#{tabbedView.alimentation}" var="alim" itemLabel="#{alim.nomAlim} (#{configurationControl.calculPrixDiff(alim.prix,'alim')})€"/>
+                                <p:ajax event="change" update="panel_contenu_alim j_idt14:PrixConfig" listener="#{configurationControl.alimentationValueChanged()}"/>
+                                <f:selectItems value="#{tabbedView.alimentation}" var="alim" itemLabel="#{alim.nomAlim} (#{configurationControl.calculPrixDiff(alim.prix,'alim')}€)"/>
                             </p:selectOneMenu>
 
                             <h:panelGrid columns="2" cellpadding="10" id="panel_contenu_alim" style="margin-top: 10px">
@@ -263,8 +272,7 @@
                                 </h:panelGrid>
                             </h:panelGrid>
                         </p:tab>
-                    </p:accordionPanel>
-                    <h:outputText id ="PrixConfig" value="#{configurationControl.prixSelectedConfig}"/>
+                    </p:accordionPanel> 
                 </h:form>
             </p:layoutUnit>
         </p:layout> 

@@ -37,7 +37,7 @@ public class CoolingDao {
     }
     
     public Cooling getCoolingByNom(String coolingNom) {
-        TypedQuery<Cooling> query = em.createNamedQuery("Cooling.findByNomStockage", Cooling.class);
+        TypedQuery<Cooling> query = em.createNamedQuery("Cooling.findByNomCooling", Cooling.class);
         query.setParameter("nomCooling", coolingNom);
         return(Cooling) query.getSingleResult();
     }
