@@ -22,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
@@ -30,7 +31,7 @@ import javax.inject.Named;
  */
 
 @Named(value = "configurationControl")
-@ViewScoped
+@SessionScoped
 public class ConfigurationControl implements Serializable {
 
     @EJB

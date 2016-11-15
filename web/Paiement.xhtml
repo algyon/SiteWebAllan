@@ -55,13 +55,13 @@
                 <h3 style="margin-left:40%; margin-top: 100px">Résumé de votre commande :</h3>
 
                 <h:form>
-                    <p:dataTable value="#{CommandeControl.saisie}" var="item">
+                    <p:dataTable value="#{CommandeControl.saisie.idCommande}" var="item">
                     </p:dataTable> <!-- Je sais pas quoi faire de ca....-->
 
                     <p:panelGrid columns="2" style="margin-left:25%">
 
                         <p:outputLabel for="idCmd" value="Numéro de commande" />
-                        <h:outputText id="idCmd" value="#{item.idCommande}"/>
+                        <h:outputText id="idCmd" value="#{CommandeControl.saisie.idCommande}"/>
                         
                         <p:outputLabel for="cpu" value="Processeur" />
                         <h:outputText id="cpu" value="#{item.nomCpu}"/>
