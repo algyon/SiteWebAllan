@@ -5,6 +5,7 @@
  */
 package Commande;
 
+import Configuration.Configuration;
 import Configuration.ConfigurationControl;
 import java.io.Serializable;
 import java.util.List;
@@ -51,6 +52,9 @@ public class CommandeControl implements Serializable {
     }
 
     public String save() {
+        Configuration config;
+        config = ConfigurationControl.getSelectedConfig();
+        
         CommandeDao.save(CommandeSaisie);
         return "Welcome";
     }
@@ -125,7 +129,7 @@ public class CommandeControl implements Serializable {
     
     public String getCpuInCommande (){
         String CpuInCommande;
-        
+        // Set 
         CpuInCommande = ConfigurationControl.getSelectedConfig().getNomCpu().getNomCpu();
         
         return CpuInCommande;
