@@ -12,38 +12,124 @@
 
     </h:head>
     <h:body  style=" background: black"> 
-        <p:dialog header="Détail de la commande :"  modal="true"  widgetVar="dlg1" height="400" width="1000" style="z-index: 1">
-                    <h:form>
-                        <p:dataTable value="#{CommandeControl.allCommande}" var="item">
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="IdCommande"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idCommande}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="DateCommande"/>
-                                </f:facet>
-                                <h:outputText value="#{item.dateCommande}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </p:column>  
-                        </p:dataTable>
-                    </h:form>
-                </p:dialog>  
-        
+        <p:dialog header="Détail de la commande :"  modal="true"  widgetVar="dlg1"  height="200" width="95%" style="z-index: 1">
+            <h:form>
+                <p:dataTable value="#{CommandeControl.allCommande}" var="item" scrollable="true" scrollWidth="200%" scrollHeight="100%" style="margin-top:20px; margin-bottom: 20px">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id Commande"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idCommande}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Date Commande"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dateCommande}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cpu"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomCpu}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Carte mère"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomCm}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Carte graphique"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomCg}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ram"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomRam}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Stockage"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomStockage}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cooling"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomCooling}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Boitier"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomBoitier}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Alimentation"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomAlim}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomU}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prénom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prenomU}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Télephone"/>
+                        </f:facet>
+                        <h:outputText value="#{item.telephoneU}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Mail"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mailU}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Adresse"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adresseU}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prix Total"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prixTotal}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:dialog>  
+
         <p:layout id="Layout" fullPage="true">
             <p:layoutUnit position="center" >
                 <p:graphicImage value="resources/images/Banner.jpg" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
                 <p:separator />
+                <h3 style="margin-left: 30px; margin-top: 25px">Statistiques :</h3>
+                <h:panelGrid columns="2" columnClasses="left,right" style="margin-left: 6%; width: 80%">
+                    <p:chart type="line" model="#{chartView.animatedModel1}" style="width:500px;" />
+                    <p:chart type="bar" model="#{chartView.animatedModel2}" style="width:500px; margin-left: 10%" />
+                </h:panelGrid>
 
-                <h3 style="margin-left: 30px; margin-top: 25px">Commandes en cours :</h3>
-
-
+                <h3 style="margin-left: 30px; margin-top: 50px">Commandes en cours :</h3>
                 <h:form>
-
-                    <p:dataTable value="#{CommandeControl.allCommande}" var="item" style="width: 80%; margin-left: 8%">
+                    <p:dataTable value="#{CommandeControl.allCommande}" var="item" style="width: 80%; margin-left: 8%; margin-bottom: 4%">
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdCommande"/>
@@ -77,133 +163,12 @@
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Détails"/>
-                            </f:facet>
-                            <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-                                <h:outputText value="This is a Modal Dialog." />
-                            </p:dialog>   
+                            </f:facet>  
                             <h:commandButton value="Voir" type="button" onclick="PF('dlg1').show();" style="margin-left: 35%"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
-
-               
             </p:layoutUnit>
         </p:layout> 
     </h:body>
 </html>
-
-
-<!--
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomCpu"/>
-            </f:facet>
-            <h:outputText value="#{item.nomCpu}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomCm"/>
-            </f:facet>
-            <h:outputText value="#{item.nomCm}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomCg"/>
-            </f:facet>
-            <h:outputText value="#{item.nomCg}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomRam"/>
-            </f:facet>
-            <h:outputText value="#{item.nomRam}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomStockage"/>
-            </f:facet>
-            <h:outputText value="#{item.nomStockage}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomCooling"/>
-            </f:facet>
-            <h:outputText value="#{item.nomCooling}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomBoitier"/>
-            </f:facet>
-            <h:outputText value="#{item.nomBoitier}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomAlim"/>
-            </f:facet>
-            <h:outputText value="#{item.nomAlim}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="NomU"/>
-            </f:facet>
-            <h:outputText value="#{item.nomU}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="PrenomU"/>
-            </f:facet>
-            <h:outputText value="#{item.prenomU}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="TelephoneU"/>
-            </f:facet>
-            <h:outputText value="#{item.telephoneU}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="MailU"/>
-            </f:facet>
-            <h:outputText value="#{item.mailU}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="AdresseU"/>
-            </f:facet>
-            <h:outputText value="#{item.adresseU}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="Montage"/>
-            </f:facet>
-            <h:outputText value="#{item.montage}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="Expedition"/>
-            </f:facet>
-            <h:outputText value="#{item.expedition}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="IsExpedie"/>
-            </f:facet>
-            <h:outputText value="#{item.isExpedie}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="IsMonte"/>
-            </f:facet>
-            <h:outputText value="#{item.isMonte}"/>
-        </p:column>
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="PrixTotal"/>
-            </f:facet>
-            <h:outputText value="#{item.prixTotal}"/>
-        </p:column>
-    </p:dataTable>
-</h:form>
-</f:view>-->
-
-
