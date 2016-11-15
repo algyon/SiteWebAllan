@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Stateless
 public class CommandeDao {
@@ -25,7 +26,13 @@ public class CommandeDao {
         Query query = em.createNamedQuery("Commande.findAll");
         return query.getResultList();
     }
-
+    
+    public Commande getCommandeById(int id) {
+        TypedQuery<Commande> query = em.createNamedQuery("Commande.findByIdCommande",Commande.class);
+        query.setParameter("idCommande",id);
+        return(Commande) query.getSingleResult();
+    }
+    
     public Commande getCommande() {
         Query query = em.createNamedQuery("Commande.findByIdCommande");
         return(Commande) query.getSingleResult();

@@ -42,8 +42,8 @@
 
 
                 <h:form>
-
-                    <p:dataTable value="#{CommandeControl.allCommande}" var="item" style="width: 80%; margin-left: 8%">
+                    
+                    <p:dataTable value="#{CommandeControl.allCommande}" sortBy="" var="item" style="width: 80%; margin-left: 8%">
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdCommande"/>
@@ -66,13 +66,13 @@
                             <f:facet name="header">
                                 <h:outputText value="IsExpedie"/>
                             </f:facet>
-                            <h:commandButton action="#{CommandeControl.save()}" value="Done" style="margin-left: 35%"/>
+                            <p:commandButton action="#{CommandeControl.updateExpe(item.idCommande)}" value="#{CommandeControl.getLivraisonToString_ADM(item.expedition)}" disabled="#{item.isExpedie}" style="margin-left: 35%"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IsMonte"/>
                             </f:facet>
-                            <h:commandButton action="#{CommandeControl.save()}" value="Done" style="margin-left: 35%"/>
+                            <p:commandButton action="#{CommandeControl.save()}" value="Done" style="margin-left: 35%"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -81,7 +81,7 @@
                             <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
                                 <h:outputText value="This is a Modal Dialog." />
                             </p:dialog>   
-                            <h:commandButton value="Voir" type="button" onclick="PF('dlg1').show();" style="margin-left: 35%"/>
+                            <p:commandButton value="Voir" type="button" onclick="PF('dlg1').show();" style="margin-left: 35%"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>

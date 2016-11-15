@@ -148,6 +148,35 @@ public class CommandeControl implements Serializable {
         }
         return MontageToString;
     }
+    
+    public String updateExpe (int CommandeId) {
+        Commande Commande;
+        Commande = CommandeDao.getCommandeById(CommandeId);
+        Commande.setExpedition(true);
+        
+        CommandeDao.update(Commande);
+        return "Admin";
+    }
+    
+    public String getLivraisonToString_ADM(boolean bool) {
+        String livraisonToString;
+        if (bool == true) {
+            livraisonToString = "Livraison ";
+        } else {
+            livraisonToString = " Pas de Livraison ";
+        }
+        return livraisonToString;
+    }
+    
+    public String getMontageToString_ADM(boolean bool) {
+        String MontageToString;
+        if (bool == true) {
+            MontageToString = "Montage de la configuration";
+        } else {
+            MontageToString = "Pas de montage de la configuration";
+        }
+        return MontageToString;
+    }
 
     public float getPrixTot() {
         return PrixTot;
