@@ -87,8 +87,8 @@
                         <h3 style="margin-left:30px">Livraison</h3>
                         <h:panelGrid id="gridLivraison" columns="2">
                             <p:selectOneRadio id="livraison" value="#{CommandeControl.commandeSaisie.expedition}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de livraison">
-                                <f:selectItem itemLabel="Je choisis la livraison à domicile" itemValue="#{true}" /> 
-                                <f:selectItem itemLabel="Je viens recupérer ma commande à l'usine" itemValue="#{false}" />
+                                <f:selectItem itemLabel="Je choisis la livraison à domicile (+15€)" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je viens recupérer ma commande moi-même" itemValue="#{false}" />
                                 <p:ajax event="blur" update=""/>
                             </p:selectOneRadio>
                             <p:message for="livraison" /> 
@@ -98,8 +98,8 @@
                         <h3 style="margin-left:30px">Montage</h3>
                         <h:panelGrid id="gridMontage" columns="2" >
                             <p:selectOneRadio id="montage" value="#{CommandeControl.commandeSaisie.montage}" layout="grid" columns="1" required="true" requiredMessage="Veuillez choisir un  mode de montage">
-                                <f:selectItem itemLabel="Je choisis l'option de montage" itemValue="#{true}" /> 
-                                <f:selectItem itemLabel="Je souhaite monter ma config moi même" itemValue="#{false}" /> 
+                                <f:selectItem itemLabel="Je choisis l'option de montage (+30€)" itemValue="#{true}" /> 
+                                <f:selectItem itemLabel="Je souhaite monter ma configuration moi même" itemValue="#{false}" /> 
                             </p:selectOneRadio>
                             <p:message for="montage" /> 
                         </h:panelGrid> 
@@ -114,7 +114,7 @@
 
                     </div>
                 </h:form>   
-                <p:commandButton id="boutonValider" value="Yolo" update="myform" action="Paiement" style="margin-top:50px; margin-left:300px; margin-bottom:80px">
+                <p:commandButton id="boutonValider" value="Valider" update="myform" action="Paiement" style="margin-top:50px; margin-left:300px; margin-bottom:80px">
                 </p:commandButton>
             </p:layoutUnit>
         </p:layout> 

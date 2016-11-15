@@ -53,10 +53,10 @@
 
 
                 <h3 style="margin-left:40%; margin-top: 100px">Résumé de votre commande :</h3>
-
+<!-- <h:outputText value="#{CommandeControl.calcPrixTotal(configurationControl.prixSelectedConfig)}"-->
                 <h:form>
 
-                    <p:panelGrid columns="2" style="margin-left:25%">
+                    <p:panelGrid columns="2" style="margin-left:30%">
 
                         <p:outputLabel for="idCmd" value="Numéro de commande" />
                         <h:outputText id="idCmd" value="#{CommandeControl.commandeSaisie.idCommande}"/>
@@ -106,12 +106,13 @@
                         <h:outputLabel for="expeditionChoix" value="Expédition"/> 
                         <h:outputText id="expeditionChoix" value="#{CommandeControl.livraisonToString}"/>
 
-                        <h:outputLabel for="prixT" value="Prix Total"/> 
-                        <h:outputText id="prixT" value="#{configurationControl.prixSelectedConfig}"/>
+                        <h:outputLabel for="prixT" value="Prix Total"/>
+                        
+                        <h:outputText id="prixT" value="#{CommandeControl.prixTot}€"/>
 
                     </p:panelGrid>
                     
-                    <p:commandButton value="Payer" action="#{CommandeControl.save()}" style="margin-left: 45%; margin-top: 35px"/>
+                    <p:commandButton value="Payer" action="#{CommandeControl.save(configurationControl.selectedConfig)}" style="margin-left: 45%; margin-top: 35px"/>
                 </h:form>
             </p:layoutUnit>
         </p:layout> 
