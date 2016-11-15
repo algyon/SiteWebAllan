@@ -55,68 +55,63 @@
                 <h3 style="margin-left:40%; margin-top: 100px">Résumé de votre commande :</h3>
 
                 <h:form>
-                    <p:dataTable value="#{CommandeControl.saisie}" var="item">
-                    </p:dataTable> <!-- Je sais pas quoi faire de ca....-->
 
                     <p:panelGrid columns="2" style="margin-left:25%">
 
                         <p:outputLabel for="idCmd" value="Numéro de commande" />
-                        <h:outputText id="idCmd" value="#{item.idCommande}"/>
+                        <h:outputText id="idCmd" value="#{CommandeControl.commandeSaisie.idCommande}"/>
                         
                         <p:outputLabel for="cpu" value="Processeur" />
-                        <h:outputText id="cpu" value="#{item.nomCpu}"/>
+                        <h:outputText id="cpu" value="#{configurationControl.selectedConfig.nomCpu}"/>
 
                         <p:outputLabel for="cm" value="Carte mère" />
-                        <h:outputText id="cm" value="#{item.nomCm}"/>
+                        <h:outputText id="cm" value="#{configurationControl.selectedConfig.nomCm}"/>
 
                         <p:outputLabel for="cg" value="Carte graphique" />
-                        <h:outputText id="cg" value="#{item.nomCg}"/>
+                        <h:outputText id="cg" value="#{configurationControl.selectedConfig.nomCg}"/>
 
                         <p:outputLabel for="ram" value="Ram" />
-                        <h:outputText id="ram" value="#{item.nomRam}"/>
+                        <h:outputText id="ram" value="#{configurationControl.selectedConfig.nomRam}"/>
 
                         <p:outputLabel for="stockage" value="Stockage" />
-                        <h:outputText id="stockage" value="#{item.nomStockage}"/>
+                        <h:outputText id="stockage" value="#{configurationControl.selectedConfig.nomStockage}"/>
 
                         <p:outputLabel for="cooling" value="Cooling" />
-                        <h:outputText id="cooling" value="#{item.nomCooling}"/>
+                        <h:outputText id="cooling" value="#{configurationControl.selectedConfig.nomCooling}"/>
 
                         <p:outputLabel for="boitier" value="Boitier" />
-                        <h:outputText id="boitier" value="#{item.nomBoitier}"/>
+                        <h:outputText id="boitier" value="#{configurationControl.selectedConfig.nomBoitier}"/>
 
                         <p:outputLabel for="alim" value="Alimentation" />
-                        <h:outputText id="alim" value="#{item.nomAlim}"/>
+                        <h:outputText id="alim" value="#{configurationControl.selectedConfig.nomAlim}"/>
 
                         <p:outputLabel for="nomUser" value="Nom"/>
-                        <h:outputText id="nomUser" value="#{item.nomU}"/>
+                        <h:outputText id="nomUser" value="#{CommandeControl.commandeSaisie.nomU}"/>
 
                         <p:outputLabel for="prenomUser" value="Prénom"/>
-                        <h:outputText id="prenomUser" value="#{item.prenomU}"/>
+                        <h:outputText id="prenomUser" value="#{CommandeControl.commandeSaisie.prenomU}"/>
 
                         <h:outputLabel for="telUser" value="Téléphone"/>
-                        <h:outputText id="telUser" value="#{item.telephoneU}"/>
+                        <h:outputText id="telUser" value="#{CommandeControl.commandeSaisie.telephoneU}"/>
 
                         <h:outputLabel for="mailUser" value="Mail"/>
-                        <h:outputText id="mailUser" value="#{item.mailU}"/>
+                        <h:outputText id="mailUser" value="#{CommandeControl.commandeSaisie.mailU}"/>
 
                         <h:outputLabel for="adresseUser" value="Adresse"/>
-                        <h:outputText id="adresseUser" value="#{item.adresseU}"/>
+                        <h:outputText id="adresseUser" value="#{CommandeControl.commandeSaisie.adresseU}"/>
 
-                        <h:outputLabel for="montageChoix" value="Montage"/> <!-- Afficher string en fnction de la val du booléen -->
-                        <h:outputText id="montageChoix" value="#{item.montage}"/>
+                        <h:outputLabel for="montageChoix" value="Montage"/>
+                        <h:outputText id="montageChoix" value="#{CommandeControl.montageToString}"/>
 
-                        <h:outputLabel for="expeditionChoix" value="Expédition"/> <!-- Afficher string en fnction de la val du booléen -->
-                        <h:outputText id="expeditionChoix" value="#{item.expedition}"/>
+                        <h:outputLabel for="expeditionChoix" value="Expédition"/> 
+                        <h:outputText id="expeditionChoix" value="#{CommandeControl.livraisonToString}"/>
 
-                        <h:outputLabel for="prixT" value="Prix Total"/> <!-- Afficher string en fnction de la val du booléen -->
-                        <h:outputText id="prixT" value="#{item.prixTotal}"/>
+                        <h:outputLabel for="prixT" value="Prix Total"/> 
+                        <h:outputText id="prixT" value="#{configurationControl.prixSelectedConfig}"/>
 
                     </p:panelGrid>
                     
-                    
-                    <p:button value="Payer" outcome="index" style="margin-left: 45%; margin-top: 35px">
-                              <!--  <f:param name="nomConfig" value="#{item.nomConfig}"/>-->
-                            </p:button>
+                    <p:commandButton value="Payer" action="#{CommandeControl.save()}" style="margin-left: 45%; margin-top: 35px"/>
                 </h:form>
             </p:layoutUnit>
         </p:layout> 

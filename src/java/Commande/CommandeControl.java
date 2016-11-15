@@ -5,11 +5,13 @@
  */
 package Commande;
 
+import Configuration.Configuration;
+import Configuration.ConfigurationControl;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -18,12 +20,13 @@ import javax.inject.Named;
  *
  */
 @Named(value = "CommandeControl")
-@ViewScoped
+@SessionScoped
 public class CommandeControl implements Serializable {
 
     @EJB
     private CommandeDao CommandeDao;
     private Commande CommandeSaisie;
+    private ConfigurationControl ConfigurationControl;
     private boolean CommandeExpe;
     private boolean CommandeMontage;
 
@@ -49,9 +52,22 @@ public class CommandeControl implements Serializable {
     }
 
     public String save() {
+        Configuration config;
+        config = ConfigurationControl.getSelectedConfig();
+        
         CommandeDao.save(CommandeSaisie);
         return "Welcome";
     }
+    
+    /*
+    public void saveAltCommande() {
+        ConfigurationControl configuration;
+        ConfigurationDao ConfigurationDao;
+        configuration = ConfigurationDao.
+        
+        CommandeSaisie.setNomAlim(configuration.getSelectedConfig());
+        CommandeDao.save(CommandeSaisie);
+    }*/
 
     public String delete() {
         CommandeDao.delete(CommandeSaisie);
@@ -91,6 +107,32 @@ public class CommandeControl implements Serializable {
         this.CommandeExpe = CommandeExpe;
     }
     
+    public String getLivraisonToString () {
+        String livraisonToString;
+        if(CommandeSaisie.getExpedition() == true){
+            livraisonToString= "Livraison ";
+        } else {
+            livraisonToString =" Pas de Livraison ";
+        }
+        return livraisonToString;
+    }
     
+    public String getMontageToString() {
+        String MontageToString;
+        if (CommandeSaisie.getMontage() == true){
+            MontageToString = "Montage de la configuration";
+        } else {
+            MontageToString = "Pas de montage de la confifuration";
+        }
+        return MontageToString;
+    }
+    
+    public String getCpuInCommande (){
+        String CpuInCommande;
+        // Set 
+        CpuInCommande = ConfigurationControl.getSelectedConfig().getNomCpu().getNomCpu();
+        
+        return CpuInCommande;
+    }
     
 }
