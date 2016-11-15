@@ -6,13 +6,11 @@
 package Commande;
 
 import Configuration.ConfigurationControl;
-import Configuration.ConfigurationDao;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -27,6 +25,7 @@ public class CommandeControl implements Serializable {
     @EJB
     private CommandeDao CommandeDao;
     private Commande CommandeSaisie;
+    private ConfigurationControl ConfigurationControl;
     private boolean CommandeExpe;
     private boolean CommandeMontage;
 
@@ -122,6 +121,14 @@ public class CommandeControl implements Serializable {
             MontageToString = "Pas de montage de la confifuration";
         }
         return MontageToString;
+    }
+    
+    public String getCpuInCommande (){
+        String CpuInCommande;
+        
+        CpuInCommande = ConfigurationControl.getSelectedConfig().getNomCpu().getNomCpu();
+        
+        return CpuInCommande;
     }
     
 }

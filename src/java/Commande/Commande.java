@@ -7,6 +7,7 @@ package Commande;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -122,7 +123,7 @@ public class Commande implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "adresseU")
     private String adresseU;
-        @Basic(optional = false)
+    @Basic(optional = false)
     @NotNull
     @Column(name = "montage")
     private boolean montage;
@@ -140,13 +141,14 @@ public class Commande implements Serializable {
     private float prixTotal;
 
     public Commande() {
+        this.idCommande = getRandomNumber();
     }
 
     public Commande(Integer idCommande) {
         this.idCommande = idCommande;
     }
 
-    public Commande(Integer idCommande, Date dateCommande, String nomCpu, String nomCm, String nomCg, String nomRam, String nomStockage, String nomCooling, String nomBoitier, String nomAlim, boolean montage, boolean expedition, String nomU, String prenomU, int telephoneU, String mailU, String adresseU, float prixTotal, boolean isExpedie,boolean isMonte) {
+    public Commande(Integer idCommande, Date dateCommande, String nomCpu, String nomCm, String nomCg, String nomRam, String nomStockage, String nomCooling, String nomBoitier, String nomAlim, boolean montage, boolean expedition, String nomU, String prenomU, int telephoneU, String mailU, String adresseU, float prixTotal, boolean isExpedie, boolean isMonte) {
         this.idCommande = idCommande;
         this.dateCommande = dateCommande;
         this.nomCpu = nomCpu;
@@ -249,7 +251,6 @@ public class Commande implements Serializable {
         this.nomAlim = nomAlim;
     }
 
-
     public String getNomU() {
         return nomU;
     }
@@ -289,7 +290,7 @@ public class Commande implements Serializable {
     public void setAdresseU(String adresseU) {
         this.adresseU = adresseU;
     }
-    
+
     public boolean getMontage() {
         return montage;
     }
@@ -330,6 +331,12 @@ public class Commande implements Serializable {
         this.prixTotal = prixTotal;
     }
 
+    public int getRandomNumber() {
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(10000000);
+        return randomInt;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -355,6 +362,4 @@ public class Commande implements Serializable {
         return "Commande.Commande[ idCommande=" + idCommande + " ]";
     }
 
-    
-    
 }
