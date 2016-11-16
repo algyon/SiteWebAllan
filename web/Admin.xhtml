@@ -12,14 +12,14 @@
 
     </h:head>
     <h:body  style=" background: black"> 
-        <p:dialog header="Détail de la commande :"  modal="true"  widgetVar="dlg1"  height="200" width="95%" style="z-index: 1">
-            <h:form>
-                <p:dataTable value="#{CommandeControl.allCommande}" var="item" scrollable="true" scrollWidth="200%" scrollHeight="100%" style="margin-top:20px; margin-bottom: 20px">
+        <p:dialog id="dialog" header="Détail de la commande :"  modal="true"  widgetVar="dlg1"  height="200" width="95%" style="z-index: 1">
+            <h:form id="form">
+                <p:dataTable id="dt" value="#{CommandeControl.getSelectedCommande()}" var="item" scrollable="true" lazy="false" scrollWidth="200%" scrollHeight="100%" style="margin-top:20px; margin-bottom: 20px">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Id Commande"/>
                         </f:facet>
-                        <h:outputText value="#{item.idCommande}"/>
+                        <h:outputText value="#{CommandeControl.selectedCommande.idCommande}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -116,7 +116,6 @@
                 </p:dataTable>
             </h:form>
         </p:dialog>  
-
         <p:layout id="Layout" fullPage="true">
             <p:layoutUnit position="center" >
                 <p:graphicImage value="resources/images/Banner.jpg" alt="Banniere" title="Banniere" style="width:100%; height:100px;" />
@@ -129,47 +128,54 @@
 
                 <h3 style="margin-left: 30px; margin-top: 50px">Commandes en cours :</h3>
                 <h:form>
-                    
-                    <p:dataTable value="#{CommandeControl.allCommande}" sortBy="" var="item" style="width: 80%; margin-left: 8%">
+
+                    <p:dataTable value="#{CommandeControl.allCommande}" var="item1" style="width: 80%; margin-left: 8%">
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdCommande"/>
                             </f:facet>
-                            <h:outputText value="#{item.idCommande}"/>
+                            <h:outputText value="#{item1.idCommande}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Montage"/>
                             </f:facet>
-                            <h:outputText value="#{item.montage}" style="margin-left: 40%"/>
+                            <h:outputText value="#{item1.montage}" style="margin-left: 40%"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Expedition"/>
                             </f:facet>
-                            <h:outputText value="#{item.expedition}" style="margin-left: 40%"/>
+                            <h:outputText value="#{item1.expedition}" style="margin-left: 40%"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IsExpedie"/>
+                                <h:outputText value="Est Monté"/>
                             </f:facet>
-                            <p:commandButton action="#{CommandeControl.updateExpe(item.idCommande)}" value="#{CommandeControl.getLivraisonToString_ADM(item.expedition)}" disabled="#{item.isExpedie}" style="margin-left: 35%"/>
+                            <p:commandButton id="zizi" actionListener="#{CommandeControl.updateMontage(item1.idCommande)}" value="#{CommandeControl.getMontageToString_ADM(item1.montage)}" disabled="#{CommandeControl.disableButtonMontage(item1.idCommande)}" update="j_idt61:j_idt62:0:zizi j_idt61:j_idt62:0:zizi1" style="margin-left: 15%"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IsMonte"/>
+                                <h:outputText value="Est Expédié"/>
                             </f:facet>
-                            <p:commandButton action="#{CommandeControl.save()}" value="Done" style="margin-left: 35%"/>
+                            <p:commandButton id="zizi1" actionListener="#{CommandeControl.updateExpe(item1.idCommande)}" value="#{CommandeControl.getLivraisonToString_ADM(item1.expedition)}" disabled="#{CommandeControl.disableButtonExpedie(item1.idCommande)}" update="j_idt61:j_idt62:0:zizi j_idt61:j_idt62:0:zizi1" style="margin-left: auto"/>
                         </p:column>
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Détails"/>
                             </f:facet>  
-                            <h:commandButton value="Voir" type="button" onclick="PF('dlg1').show();" style="margin-left: 35%"/>
+                            <p:commandButton value="Voir" actionListener="#{CommandeControl.setSelectedCommande(item1)}" oncomplete="PF('dlg1').show();" update=":dialog" style="margin-left: 35%">
+                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
+
                 </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" style="overflow:hidden">
+                <p:button outcome="Welcome" value="Accueil" style="margin-left: 40%; font-size:10px"/>
             </p:layoutUnit>
         </p:layout> 
     </h:body>
 </html>
+

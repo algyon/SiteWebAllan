@@ -10,12 +10,18 @@ import Configuration.ConfigurationControl;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Named;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -30,14 +36,18 @@ public class CommandeControl implements Serializable {
     private CommandeDao CommandeDao;
 
     private Commande CommandeSaisie;
+    private Commande SelectedCommande;
     private ConfigurationControl ConfigurationControl;
-
+    private DataModel ListCommande = new ListDataModel();
     private boolean CommandeExpe;
     private boolean CommandeMontage;
     private float PrixTot;
+    private int idSelectedCommande;
 
     public CommandeControl() {
         CommandeSaisie = new Commande();
+        SelectedCommande = new Commande();
+        idSelectedCommande = 0;
     }
 
     public List<Commande> getAllCommande() {
@@ -102,7 +112,7 @@ public class CommandeControl implements Serializable {
     }
 
     public void lireCommande(ComponentSystemEvent event) {
-        CommandeSaisie = CommandeDao.getCommande();
+        SelectedCommande = CommandeDao.getCommande();
     }
 
     public Commande getCommandeSaisie() {
@@ -148,16 +158,23 @@ public class CommandeControl implements Serializable {
         }
         return MontageToString;
     }
-    
-    public String updateExpe (int CommandeId) {
+
+    public void updateExpe(int CommandeId) {
         Commande Commande;
         Commande = CommandeDao.getCommandeById(CommandeId);
-        Commande.setExpedition(true);
-        
+        Commande.setIsExpedie(true);
+
         CommandeDao.update(Commande);
-        return "Admin";
     }
-    
+
+    public void updateMontage(int CommandeId) {
+        Commande Commande;
+        Commande = CommandeDao.getCommandeById(CommandeId);
+        Commande.setIsMonte(true);
+
+        CommandeDao.update(Commande);
+    }
+
     public String getLivraisonToString_ADM(boolean bool) {
         String livraisonToString;
         if (bool == true) {
@@ -167,13 +184,13 @@ public class CommandeControl implements Serializable {
         }
         return livraisonToString;
     }
-    
+
     public String getMontageToString_ADM(boolean bool) {
         String MontageToString;
         if (bool == true) {
-            MontageToString = "Montage de la configuration";
+            MontageToString = "Montage";
         } else {
-            MontageToString = "Pas de montage de la configuration";
+            MontageToString = "Pas de montage";
         }
         return MontageToString;
     }
@@ -186,4 +203,74 @@ public class CommandeControl implements Serializable {
         this.PrixTot = PrixTot;
     }
 
+    public List<Commande> CommandeToDisplay(int id) {
+        System.out.println(idSelectedCommande);
+        System.out.println(id);
+        SelectedCommande = CommandeDao.getCommandeById(id);
+
+        List<Commande> list = new ArrayList<Commande>();
+        list.add(SelectedCommande);
+        return list;
+    }
+
+    public int getIdSelectedCommande() {
+        return idSelectedCommande;
+    }
+
+    public void setIdSelectedCommande(int idSelectedCommande) {
+        this.idSelectedCommande = idSelectedCommande;
+    }
+
+    public Boolean rendered() {
+        return idSelectedCommande == 0;
+    }
+
+    public Commande getSelectedCommande() {
+        return SelectedCommande;
+    }
+
+    public void setSelectedCommande(Commande SelectedCommande) {
+        this.SelectedCommande = SelectedCommande;
+    }
+
+    public void setSelectedCommandeById(int id) {
+        System.out.println("Started");
+        SelectedCommande = CommandeDao.getCommandeById(id);
+        System.out.println("Done");
+    }
+
+    public boolean disableButtonExpedie(int id) {
+        Commande Commande;
+        Commande = CommandeDao.getCommandeById(id);
+        if (Commande.getExpedition() == true) {
+            if (Commande.getMontage() == true) {
+                if (Commande.getIsMonte() == null && Commande.getIsExpedie() == null) {
+                    return true;
+                }
+                if (Commande.getIsMonte() != null) {
+                    if (Commande.getIsExpedie() != null) {
+                        return true;
+                    }
+                    return false;
+                }
+
+            } else if (Commande.getIsExpedie() != null) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public boolean disableButtonMontage(int id) {
+        Commande Commande;
+        Commande = CommandeDao.getCommandeById(id);
+        if (Commande.getMontage() == true) {
+            if (Commande.getIsMonte() != null) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
 }
